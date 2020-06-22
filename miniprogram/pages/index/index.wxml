@@ -1,0 +1,6 @@
+
+
+
+<button open-type='getUserInfo' bindtap='login'>get 用户信息</button>
+
+<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">111</button>
