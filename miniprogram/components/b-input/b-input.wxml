@@ -52,5 +52,5 @@
 
         </view>
     </view>
-    <view class="err">{{err}}</view>
+<!--    <view class="err">{{err}}</view>-->
 </view>
