@@ -13,34 +13,34 @@
 
 <!--            判断是否有图标-->
             <block wx:if="{{iconSrc}}">
-                <image src="{{iconSrc}}" style="width:{{icon_width}}rpx;height:{{icon_height}}rpx;"></image>
+                <image src="{{iconSrc}}"></image>
             </block>
 
 
 <!--            判断输入框类型-->
 <!--            文本-->
             <block wx:if="{{type=='text'}}">
-                <input class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+                <input class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            密码-->
             <block wx:elif="{{type=='password'}}">
-                <input class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" password="true" value="{{value}}" rule="{{rule}}"/>
+                <input class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" password="true" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            数字-->
             <block wx:elif="{{type=='number'}}">
-                <input class="__input__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+                <input class="__input__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            身份证-->
             <block wx:elif="{{type=='idcard'}}">
-                <input class="__input__ boxflex1" type="idcard" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+                <input class="__input__ boxflex1" type="idcard" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            带小数键盘-->
             <block wx:elif="{{type=='digit'}}">
-                <input class="__input__ boxflex1" type="digit" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+                <input class="__input__ boxflex1" type="digit" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            textarea-->
             <block wx:elif="{{type=='textarea'}}">
-                <textarea class="__input_textarea__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+                <textarea class="__input_textarea__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 
 

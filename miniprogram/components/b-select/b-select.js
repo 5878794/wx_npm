@@ -41,11 +41,17 @@ Component({
 		onSelect(e){
 			this.setData({
 				selectIndex:e.detail.value
-			})
+			});
+
+			let val = this.getValue();
+			var myEventDetail = {value:val}; // detail对象，提供给事件监听函数
+			var myEventOption = {}; // 触发事件的选项
+			this.triggerEvent('mychange', myEventDetail, myEventOption)
+
 		},
 
 		getValue(){
-			return this.setData.selectKey[this.setData.selectIndex];
+			return this.data.selectKey[this.data.selectIndex];
 		}
 	}
 });

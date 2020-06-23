@@ -18,7 +18,7 @@
 <!--            判断输入框类型-->
 <!--            select-->
             <block wx:if="{{type=='select'}}">
-                <picker class="__input__ boxflex1" mode='selector' range="{{selectValue}}"  rule="{{rule}}" bindchange="onSelect">
+                <picker class="__input__ boxflex1" mode='selector' header-text="请选择" range="{{selectValue}}"  rule="{{rule}}" bindchange="onSelect">
                     <view>{{selectValue[selectIndex]}}</view>
                 </picker>
             </block>
