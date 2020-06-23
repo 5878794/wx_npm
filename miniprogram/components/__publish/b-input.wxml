@@ -1,0 +1,13 @@
+
+
+
+
+<template name="input">
+    <view class="box_slt">
+        <view class="box_hcc body">
+            <view class="name">{{name}}</view>
+            <slot></slot>
+        </view>
+        <view class="err">{{err}}</view>
+    </view>
+</template>

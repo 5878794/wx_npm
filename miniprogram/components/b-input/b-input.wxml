@@ -1,0 +1,54 @@
+
+
+
+<view class="box_slt">
+    <view class="box_hcc body">
+        <view class="name">{{name}}</view>
+        <view class="input_body box_hlc boxflex1">
+
+
+
+
+
+
+<!--            判断是否有图标-->
+            <block wx:if="{{iconSrc}}">
+                <image src="{{iconSrc}}" style="width:{{icon_width}}rpx;height:{{icon_height}}rpx;"></image>
+            </block>
+
+
+<!--            判断输入框类型-->
+<!--            文本-->
+            <block wx:if="{{type=='text'}}">
+                <input class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+            </block>
+<!--            密码-->
+            <block wx:elif="{{type=='password'}}">
+                <input class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" password="true" value="{{value}}" rule="{{rule}}"/>
+            </block>
+<!--            数字-->
+            <block wx:elif="{{type=='number'}}">
+                <input class="__input__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+            </block>
+<!--            身份证-->
+            <block wx:elif="{{type=='idcard'}}">
+                <input class="__input__ boxflex1" type="idcard" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+            </block>
+<!--            带小数键盘-->
+            <block wx:elif="{{type=='digit'}}">
+                <input class="__input__ boxflex1" type="digit" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+            </block>
+<!--            textarea-->
+            <block wx:elif="{{type=='textarea'}}">
+                <textarea class="__input_textarea__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}"/>
+            </block>
+
+
+
+
+
+
+        </view>
+    </view>
+    <view class="err">{{err}}</view>
+</view>

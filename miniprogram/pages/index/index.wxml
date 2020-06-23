@@ -1,6 +1,14 @@
 
 
 
-<button open-type='getUserInfo' bindtap='login'>get 用户信息</button>
+<view style="padding:0 20rpx;">
+    <b-input class="b_input" icon="../../images/5@1x.png" type="text" placeholder="电话号码" err="请输入电话号码" name="电话" rule="must" value="123"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="password" placeholder="电话号码" err="请输入电话号码" name="密码" rule="must" value="123"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="number" placeholder="电话号码" err="请输入电话号码" name="数字" rule="must" value="123"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="idcard" placeholder="电话号码" err="请输入电话号码" name="身份证" rule="must" value="123"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="digit" placeholder="电话号码" err="请输入电话号码" name="小数" rule="must" value="123"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="textarea" placeholder="电话号码" err="请输入电话号码" name="文本框" rule="must" value="123"></b-input>
+    <b-select class="b_input" icon="../../images/5@1x.png" type="select" placeholder="电话号码" err="请输入电话号码" selectData="{{selectData}}" name="单选" rule="must" value="{{selectValue}}"></b-select>
 
-<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">111</button>
+
+</view>

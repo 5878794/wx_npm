@@ -1,0 +1,37 @@
+
+
+
+<view class="box_slt">
+    <view class="box_hcc body">
+        <view class="name">{{name}}</view>
+        <view class="input_body box_hlc boxflex1">
+
+
+
+
+<!--            判断是否有图标-->
+            <block wx:if="{{iconSrc}}">
+                <image src="{{iconSrc}}"></image>
+            </block>
+
+
+<!--            判断输入框类型-->
+<!--            select-->
+            <block wx:if="{{type=='select'}}">
+                <picker class="__input__ boxflex1" mode='selector' range="{{selectValue}}"  rule="{{rule}}" bindchange="onSelect">
+                    <view>{{selectValue[selectIndex]}}</view>
+                </picker>
+            </block>
+
+
+
+
+
+
+
+
+
+        </view>
+    </view>
+    <view class="err">{{err}}</view>
+</view>
