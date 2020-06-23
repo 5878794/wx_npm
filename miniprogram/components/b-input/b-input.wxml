@@ -3,7 +3,9 @@
 
 <view class="box_slt">
     <view class="box_hcc body">
-        <view class="name">{{name}}</view>
+        <block wx:if="{{name}}">
+            <view class="name">{{name}}</view>
+        </block>
         <view class="input_body box_hlc boxflex1">
 
 

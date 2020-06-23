@@ -2,12 +2,12 @@
 
 
 <view style="padding:0 20rpx;">
-    <b-input class="b_input" icon="../../images/5@1x.png" type="text" placeholder="电话号码" err="请输入电话号码" name="电话" rule="must" id="name" value="{{input.name}}" bindmychange="inputMyChange"></b-input>
-    <b-input class="b_input" icon="../../images/5@1x.png" type="password" placeholder="电话号码" err="请输入电话号码" name="密码" rule="must" id="password" value="{{input.password}}" bindmychange="inputMyChange"></b-input>
-    <b-input class="b_input" icon="../../images/5@1x.png" type="number" placeholder="电话号码" err="请输入电话号码" name="数字" rule="must" id="number" value="{{input.number}}" bindmychange="inputMyChange"></b-input>
-    <b-input class="b_input" icon="../../images/5@1x.png" type="idcard" placeholder="电话号码" err="请输入电话号码" name="身份证" rule="must" id="idcard" value="{{input.idcard}}" bindmychange="inputMyChange"></b-input>
-    <b-input class="b_input" icon="../../images/5@1x.png" type="digit" placeholder="电话号码" err="请输入电话号码" name="小数" rule="must" id="digit" value="{{input.digit}}" bindmychange="inputMyChange"></b-input>
-    <b-input class="b_input" icon="../../images/5@1x.png" type="textarea" placeholder="电话号码" err="请输入电话号码" name="文本框" rule="must" id="textarea" value="{{input.textarea}}" bindmychange="inputMyChange"></b-input>
-    <b-select class="b_input" icon="../../images/5@1x.png" type="select" placeholder="电话号码" err="请输入电话号码" selectData="{{selectData}}" name="单选" id="select" rule="must" value="{{input.select}}" bindmychange="inputMyChange"></b-select>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="text" placeholder="电话号码"  name="电话" id="name" value="{{input.name}}" bindmychange="inputMyChange"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="password" placeholder="电话号码" name="密码" id="password" value="{{input.password}}" bindmychange="inputMyChange"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="number" placeholder="电话号码" name="数字" id="number" value="{{input.number}}" bindmychange="inputMyChange"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="idcard" placeholder="电话号码" name="身份证" id="idcard" value="{{input.idcard}}" bindmychange="inputMyChange"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="digit" placeholder="电话号码" name="小数" id="digit" value="{{input.digit}}" bindmychange="inputMyChange"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="textarea" placeholder="电话号码" name="文本框" id="textarea" value="{{input.textarea}}" bindmychange="inputMyChange"></b-input>
+    <b-select class="b_input" icon="../../images/5@1x.png" type="select" placeholder="电话号码" selectData="{{selectData}}" name="单选" id="select" value="{{input.select}}" bindmychange="inputMyChange"></b-select>
 
 </view>
