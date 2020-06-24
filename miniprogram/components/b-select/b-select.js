@@ -31,7 +31,8 @@ Component({
 		this.setData({
 			selectValue:newData,
 			selectKey:newKey,
-			selectIndex:selectIndex
+			selectIndex:selectIndex,
+			value:selected
 		});
 
 	},
@@ -39,14 +40,19 @@ Component({
 
 	methods: {
 		onSelect(e){
+
 			this.setData({
 				selectIndex:e.detail.value
 			});
-
 			let val = this.getValue();
-			var myEventDetail = {value:val}; // detail对象，提供给事件监听函数
-			var myEventOption = {}; // 触发事件的选项
-			this.triggerEvent('mychange', myEventDetail, myEventOption)
+			this.setData({
+				value:val
+			});
+
+
+			// var myEventDetail = {value:val}; // detail对象，提供给事件监听函数
+			// var myEventOption = {}; // 触发事件的选项
+			// this.triggerEvent('mychange', myEventDetail, myEventOption)
 
 		},
 

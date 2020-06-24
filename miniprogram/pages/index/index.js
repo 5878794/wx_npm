@@ -22,6 +22,7 @@ Page({
   onLoad: function() {
 
 
+
     
   },
   async login(e){
@@ -32,6 +33,34 @@ Page({
   inputMyChange(e){
     console.log(e);
     console.log(e.detail.value)
+
+  },
+
+
+  getVal(){
+      let name = this.selectComponent('#name').data.value;
+      console.log(name);
+
+    let password = this.selectComponent('#password').data.value;
+    console.log(password);
+
+    let number = this.selectComponent('#number').data.value;
+    console.log(number);
+
+    let idcard = this.selectComponent('#idcard').data.value;
+    console.log(idcard);
+
+    let digit = this.selectComponent('#digit').data.value;
+    console.log(digit);
+
+    let textarea = this.selectComponent('#textarea').data.value;
+    console.log(textarea);
+
+    let select = this.selectComponent('#select').data.value;
+    console.log(select);
+
+
+
 
   }
 
