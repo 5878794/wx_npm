@@ -13,4 +13,4 @@
 </view>
 
 
-<view bindtap="getVal">121312313</view>
+<view id="a1" bindtap="getVal">121312313</view>

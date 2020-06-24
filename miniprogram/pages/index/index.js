@@ -20,7 +20,7 @@ Page({
   },
 
   onLoad: function() {
-
+    console.log(this.selectComponent('#a1'))
 
 
     
