@@ -4,6 +4,9 @@
 //通过jq方式获取组件对象
 //选择器使用id选择器，    class由于微信的选择器问题不能获取多个
 //attr方法    组件已有的属性才能添加、修改
+//data       数据   设置、获取
+//val        input控件的值,    设置、获取
+//check      数据检查返回promise对象，并返回值，检查失败进入 throw err
 
 
 import checkFn from "./inputCheck";

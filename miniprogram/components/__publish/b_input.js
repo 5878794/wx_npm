@@ -62,9 +62,9 @@ let b_input = Behavior({
 			})
 
 
-			// var myEventDetail = {value:e.detail.value}; // detail对象，提供给事件监听函数
-			// var myEventOption = {}; // 触发事件的选项
-			// this.triggerEvent('mychange', myEventDetail, myEventOption)
+			let myEventDetail = {value:e.detail.value}; // detail对象，提供给事件监听函数
+			let myEventOption = {}; // 触发事件的选项
+			this.triggerEvent('mychange', myEventDetail, myEventOption)
 		},
 
 		value(value){

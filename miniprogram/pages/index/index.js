@@ -70,11 +70,18 @@ Page({
 
 	async submit(){
 
-		await $('#name').check();
+		let nameVal = await $('#name').check();
+		let selectVal = await $('#select').check();
+
+		console.log(nameVal,selectVal)
 
 		console.log('can submit!!!')
 
 
+	},
+
+	aaa(e){
+		console.log(e)
 	}
 
 
