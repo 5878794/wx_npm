@@ -1,68 +1,80 @@
 //index.js
 const app = getApp();
-import server from '../../lib/server.js';
-import {ajax,api} from '../../lib/ajax.js'
-
+// import server from '../../lib/server.js';
+// import {ajax,api} from '../../lib/ajax.js';
+import sys from '../../lib/sys.js';
+import $ from '../../lib/jq.js';
 
 
 Page({
-  data: {
-    input:{
-      select:33
-    },
-    selectData:[
-      {key:11,value:'a'},
-      {key:22,value:'b'},
-      {key:33,value:'c'},
-      {key:44,value:'d'},
-      {key:55,value:'e'}
-    ]
-  },
+	data: {
+		input:{
+			select:33
+		},
+		selectData:[
+			{key:11,value:'a'},
+			{key:22,value:'b'},
+			{key:33,value:'c'},
+			{key:44,value:'d'},
+			{key:55,value:'e'}
+		]
+	},
 
-  onLoad: function() {
-    console.log(this.selectComponent('#a1'))
-
-
-    
-  },
-  async login(e){
-    let rs = await server.login1();
-    console.log(rs)
-      
-  },
-  inputMyChange(e){
-    console.log(e);
-    console.log(e.detail.value)
-
-  },
+	onLoad: function() {
+		console.log(this.selectComponent('#name'))
 
 
-  getVal(){
-      let name = this.selectComponent('#name').data.value;
-      console.log(name);
-
-    let password = this.selectComponent('#password').data.value;
-    console.log(password);
-
-    let number = this.selectComponent('#number').data.value;
-    console.log(number);
-
-    let idcard = this.selectComponent('#idcard').data.value;
-    console.log(idcard);
-
-    let digit = this.selectComponent('#digit').data.value;
-    console.log(digit);
-
-    let textarea = this.selectComponent('#textarea').data.value;
-    console.log(textarea);
-
-    let select = this.selectComponent('#select').data.value;
-    console.log(select);
+		// $('#name').data({tt:123});
+		// console.log($('#name').data('tt'));
+		// console.log($('#name').data());
 
 
 
+	},
+	async login(e){
+		let rs = await server.login1();
+		console.log(rs)
 
-  }
+	},
+	inputMyChange(e){
+		console.log(e);
+		console.log(e.detail.value)
+
+	},
+
+
+	getVal(){
+		// console.log($('#select').val())
+		//
+		// $('#select').val(55)
+		//
+		// console.log($('#select').val())
+		// $('#name').attr({icon:'../../images/4@1x.png'});
+
+		// console.log($('#name').attr());
+
+		// console.log($('#name').attr('icon'));
+
+		// console.log($('#name').attr('rule'));
+
+
+
+		this.submit().then().catch(e=>{
+			console.log(e)
+			sys.alert(e);
+		})
+
+	},
+
+
+	async submit(){
+
+		await $('#name').check();
+
+		console.log('can submit!!!')
+
+
+	}
 
 
 })

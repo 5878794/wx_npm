@@ -58,6 +58,22 @@ Component({
 
 		getValue(){
 			return this.data.selectKey[this.data.selectIndex];
+		},
+
+
+		value(value){
+			let index = this.data.selectKey.indexOf(value);
+
+			if(index == -1){return;}
+
+
+			this.setData({
+				selectIndex:index
+			});
+			let val = this.getValue();
+			this.setData({
+				value:val
+			});
 		}
 	}
 });

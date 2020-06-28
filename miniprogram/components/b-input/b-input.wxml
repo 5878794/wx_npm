@@ -14,8 +14,8 @@
 
 
 <!--            判断是否有图标-->
-            <block wx:if="{{iconSrc}}">
-                <image src="{{iconSrc}}"></image>
+            <block wx:if="{{icon}}">
+                <image src="{{icon}}"></image>
             </block>
 
 
