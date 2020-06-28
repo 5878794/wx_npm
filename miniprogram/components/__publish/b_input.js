@@ -30,6 +30,10 @@ let b_input = Behavior({
 		value:{
 			type: String,
 			value: ''
+		},
+		key:{
+			type: String,
+			value: ''
 		}
 	},
 

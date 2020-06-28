@@ -58,10 +58,11 @@ Page({
 		// console.log($('#name').attr('rule'));
 
 
+		console.log($('#name').attr('rule'))
 
-		this.submit().then().catch(e=>{
-			console.log(e)
-			sys.alert(e);
+		this.submit().then().catch(async e=>{
+			await sys.alert(e.msg);
+			await sys.alert(e.key);
 		})
 
 	},
