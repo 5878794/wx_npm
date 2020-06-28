@@ -70,14 +70,14 @@ class JQ{
 	check(){
 		let val = this.val(),
 			rule = this.attr('rule'),
-			key = this.attr('key'),
+			id = this.dom.id,
 			errMsg = this.attr('err');
 
 		return new Promise((success,error)=>{
 			if(checkFn(val,rule)){
 				success(val);
 			}else{
-				throw {msg:errMsg,key};
+				throw {msg:errMsg,id};
 			}
 		});
 	}

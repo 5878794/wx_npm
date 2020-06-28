@@ -62,7 +62,7 @@ Page({
 
 		this.submit().then().catch(async e=>{
 			await sys.alert(e.msg);
-			await sys.alert(e.key);
+			await sys.alert(e.id);
 		})
 
 	},

@@ -2,7 +2,7 @@
 
 
 <view style="padding:0 20rpx;">
-    <b-input class="b_input" icon="../../images/5@1x.png" type="text" placeholder="电话号码" data-id="222" name="电话" id="name" value="{{input.name}}" rule="must,min:1,max:20,str" key="name" err="请输入用户名"></b-input>
+    <b-input class="b_input" icon="../../images/5@1x.png" type="text" placeholder="电话号码" data-id="222" name="电话" id="name" value="{{input.name}}" rule="must,min:1,max:20,str"  err="请输入用户名"></b-input>
     <b-input class="b_input" icon="../../images/5@1x.png" type="password" placeholder="电话号码" name="密码" id="password" value="{{input.password}}" ></b-input>
     <b-input class="b_input" icon="../../images/5@1x.png" type="number" placeholder="电话号码" name="数字" id="number" value="{{input.number}}" ></b-input>
     <b-input class="b_input" icon="../../images/5@1x.png" type="idcard" placeholder="电话号码" name="身份证" id="idcard" value="{{input.idcard}}" ></b-input>
