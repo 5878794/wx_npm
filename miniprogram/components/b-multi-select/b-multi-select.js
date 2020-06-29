@@ -8,6 +8,10 @@ Component({
 	    selectData:{
 		    type:Array,
 		    value:[]
+	    },
+	    cascade:{
+	    	type:String,
+		    value:"true"
 	    }
     },
     data: {
@@ -15,30 +19,62 @@ Component({
     },
 
 	attached(){
-		//处理select
-		let selected = this.data.value, //  0,0,0
-			selectIndex = [],           //原声控件显示层级的序号 数组
-			//数据组的层级必须一致
-			selectNumber = this.getSelectNumber();
-
-
-		selected = selected.split(',') || new Array(selectNumber);
-
-		//获取selectIndex数组
-		selectIndex = this.getSelectIndex(selected,selectNumber);
-
-		let selectArray = this.getSelectArray(selectIndex),
-			selectText = this.getSelectText(selectIndex);
-
-		this.setData({
-			selectValue:selectArray,
-			nowValue:selectIndex,
-			showText:selectText
-		});
+		if(this.data.cascade == 'true'){
+			this.isCascade();
+		}else{
+			this.isNotCascade();
+		}
 	},
 
 
 	methods: {
+		//级联菜单初始化
+		isCascade(){
+			//处理select
+			let selected = this.data.value, //  0,0,0
+				selectIndex = [],           //原声控件显示层级的序号 数组
+				//数据组的层级必须一致
+				selectNumber = this.getSelectNumber();
+
+
+			selected = selected.split(',') || new Array(selectNumber);
+
+			//获取selectIndex数组
+			selectIndex = this.getSelectIndex(selected,selectNumber);
+
+			let selectArray = this.getSelectArray(selectIndex),
+				selectText = this.getSelectText(selectIndex);
+
+			this.setData({
+				selectValue:selectArray,
+				nowValue:selectIndex,
+				showText:selectText
+			});
+		},
+		//非级联菜单初始化
+		isNotCascade(){
+			let val = this.data.value;
+			val = val.split(',') || new Array(data.length);
+
+			let keys = [],
+				data = this.data.selectData;
+			val.map((rs,i)=>{
+				let keysLength = keys.length;
+				data[i].map((rs1,n)=>{
+					if(rs1==rs){
+						keys.push(n);
+					}
+				});
+				if(keysLength == keys.length){
+					keys.push(0);
+				}
+			});
+
+
+			this.setValue1(keys);
+		},
+
+
 		//获取数据的长度，每个数据组层级必须一致
 		getSelectNumber(){
 			let data = this.data.selectData,
@@ -139,6 +175,16 @@ Component({
 
 			this.setValue(nowIndex);
 		},
+		onSelect1(e){
+			let data = e.detail,
+				col = data.column,
+				val = data.value,
+				nowIndex = this.data.nowValue;
+
+			nowIndex[col] = val;
+
+			this.setValue1(nowIndex);
+		},
 
 		setValue(indexs){
 			let selectArray = this.getSelectArray(indexs),
@@ -149,6 +195,23 @@ Component({
 				selectValue:selectArray,
 				nowValue:indexs,
 				showText:selectText
+			});
+		},
+		setValue1(indexs){
+			let data = this.data.selectData,
+				val = indexs,
+				text = [];
+
+			data.map((rs,i)=>{
+				let n = val[i] || 0;
+				text.push(rs[n]);
+			});
+			text = text.join(',');
+
+			this.setData({
+				selectValue:data,
+				nowValue:val,
+				showText:text
 			});
 		},
 
@@ -181,15 +244,36 @@ Component({
 			this.triggerEvent('mychange', myEventDetail, myEventOption)
 
 		},
+		onSuccess1(e){
+			let data = e.detail.value;
+			this.setValue1(data);
+
+			let myEventDetail = {value:this.data.showText}; // detail对象，提供给事件监听函数
+			let myEventOption = {}; // 触发事件的选项
+			this.triggerEvent('mychange', myEventDetail, myEventOption)
+		},
 
 		value(value){
 			value = value.split(',');
+			if(this.data.cascade == 'true'){
+				//key转index
+				let selectNumber = this.getSelectNumber(),
+					selectIndex = this.getSelectIndex(value,selectNumber);
 
-			//key转index
-			let selectNumber = this.getSelectNumber(),
-				selectIndex = this.getSelectIndex(value,selectNumber);
+				this.setValue(selectIndex);
+			}else{
+				let keys = [],
+					data = this.data.selectData;
+				value.map((rs,i)=>{
+					data[i].map((rs1,n)=>{
+						if(rs1==rs){
+							keys.push(n);
+						}
+					});
+				});
 
-			this.setValue(selectIndex);
+				this.setValue1(keys);
+			}
 		}
 	}
 });

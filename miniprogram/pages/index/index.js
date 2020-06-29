@@ -76,12 +76,15 @@ Page({
 						]}
 				]}
 		],
-		selectValue3:"1,6,17,222"
+		selectValue3:"1,6,17,222",
+		selectData4:[[0,1,2,3,4,5],[1,2,3,6,7,8],[1,2,3,6,7,8]],
+		selectValue4:"5,8"
 	},
 
 	onLoad: function() {
 		console.log(this.selectComponent('#name'))
-
+		console.log($('#mSelect').val())
+		console.log($('#m1Select').val())
 
 		// $('#name').data({tt:123});
 		// console.log($('#name').data('tt'));
@@ -118,6 +121,7 @@ Page({
 
 
 		console.log($('#name').attr('rule'))
+
 
 		this.submit().then().catch(async e=>{
 			await sys.alert(e.msg);
