@@ -22,13 +22,13 @@
 <!--            判断输入框类型-->
 <!--            time-->
             <block wx:if="{{type=='time'}}">
-                <picker class="__input__ boxflex1" mode='time' header-text="请选择" range="{{selectValue}}" start="{{start}}" end="{{end}}" value="{{value}}"  rule="{{rule}}" bindchange="onSelect">
+                <picker class="__input__ boxflex1" mode='time' header-text="请选择"  start="{{start}}" end="{{end}}" value="{{value}}"  rule="{{rule}}" bindchange="onSelect">
                     <view class="show_text diandian">{{value}}</view>
                 </picker>
             </block>
 <!--            date-->
             <block wx:if="{{type=='date'}}">
-                <picker class="__input__ boxflex1" mode='date' header-text="请选择" range="{{selectValue}}" start="{{start}}" end="{{end}}" value="{{value}}"  rule="{{rule}}" bindchange="onSelect">
+                <picker class="__input__ boxflex1" mode='date' header-text="请选择" start="{{start}}" end="{{end}}" value="{{value}}"  rule="{{rule}}" bindchange="onSelect">
                     <view class="show_text diandian">{{value}}</view>
                 </picker>
             </block>
