@@ -76,7 +76,7 @@ Page({
 						]}
 				]}
 		],
-		selectValue3:"1,6,17,222",
+		selectValue3:"0,2,8,111",
 		selectData4:[[0,1,2,3,4,5],[1,2,3,6,7,8],[1,2,3,6,7,8]],
 		selectValue4:"5,8"
 	},

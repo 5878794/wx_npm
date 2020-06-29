@@ -21,6 +21,7 @@
 }
 
 .__input__{
+    position: relative;
     display: block; height: 80rpx; line-height: 80rpx;
     font-size: 36rpx; color: #333; box-sizing: border-box;
     padding:0 10rpx;
@@ -32,6 +33,9 @@
     width:auto;
 }
 
+.show_text{
+    position: absolute; left:10rpx; top:0; right:10rpx; bottom:0;
+}
 
 
 
