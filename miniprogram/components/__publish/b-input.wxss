@@ -34,7 +34,20 @@
 }
 
 .show_text{
-    position: absolute; left:10rpx; top:0; right:10rpx; bottom:0;
+    position: absolute; left:10rpx; top:0; right:20rpx; bottom:0;
+    padding-right: 34rpx;
+}
+.show_text:after{
+    content: '';
+    width: 0;
+    height: 0;
+    border-left:12rpx solid transparent;
+    border-right:12rpx solid transparent;
+    border-top: 18rpx solid #666;
+    position:absolute;
+    right:0;
+    top:50%;
+    margin-top:-9rpx;
 }
 
 
