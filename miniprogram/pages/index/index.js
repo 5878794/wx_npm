@@ -8,16 +8,75 @@ import $ from '../../lib/jq.js';
 
 Page({
 	data: {
-		input:{
-			select:33
-		},
+
 		selectData:[
 			{key:11,value:'a'},
 			{key:22,value:'b'},
 			{key:33,value:'c'},
 			{key:44,value:'d'},
 			{key:55,value:'e'}
-		]
+		],
+		selectData1:[
+			{key:0,value:'无脊柱动物',children:[
+				{key:2,value:'无脊1',children:[
+					{key:8,value:'无脊1_1'},
+					{key:9,value:'无脊1_2'}
+				]},
+				{key:3,value:'无脊2',children:[
+					{key:10,value:'无脊2_1'},
+					{key:11,value:'无脊2_2'}
+				]},
+				{key:4,value:'无脊3',children:[
+					{key:12,value:'无脊3_1'},
+					{key:13,value:'无脊3_2'}
+				]},
+				{key:5,value:'无脊4',children:[
+					{key:14,value:'无脊4_1'},
+					{key:15,value:'无脊4_2'}
+				]}
+			]},
+			{key:1,value:'脊柱动物',children:[
+				{key:6,value:'脊1',children:[
+					{key:16,value:'脊1_1'},
+					{key:17,value:'脊1_2'}
+				]},
+				{key:7,value:'脊2',children:[
+					{key:18,value:'脊2_1'},
+					{key:19,value:'脊2_2'}
+				]}
+			]}
+		],
+		selectValue1:"1,1,1",
+		selectData2:[
+			{key:0,value:'无脊柱动物',children:[
+					{key:2,value:'无脊1'},
+					{key:3,value:'无脊2'},
+					{key:4,value:'无脊3'},
+					{key:5,value:'无脊4'}
+				]},
+			{key:1,value:'脊柱动物',children:[
+					{key:6,value:'脊1'},
+					{key:7,value:'脊2'}
+				]}
+		],
+		selectValue2:"1,7",
+		selectData3:[
+			{key:0,value:'无脊柱动物',children:[
+					{key:2,value:'无脊1',children:[
+							{key:8,value:'无脊1_1',children:[
+									{key:111,value:'无脊1_1_1'}
+								]}
+						]}
+				]},
+			{key:1,value:'脊柱动物',children:[
+					{key:6,value:'脊1',children:[
+							{key:17,value:'脊1_2',children:[
+									{key:222,value:'脊1_2_1'}
+								]}
+						]}
+				]}
+		],
+		selectValue3:"1,6,17,222"
 	},
 
 	onLoad: function() {

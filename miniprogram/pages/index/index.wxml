@@ -10,6 +10,7 @@
     <b-input class="b_input" icon="../../images/5@1x.png" type="textarea" placeholder="电话号码" name="文本框" id="textarea" value="{{input.textarea}}" ></b-input>
 
     <b-select class="b_input" icon="../../images/5@1x.png" type="select" placeholder="电话号码" selectData="{{selectData}}" name="单选" id="select" rule="must,min:3" value="{{input.select}}" ></b-select>
+    <b-multi-select class="b_input" icon="../../images/5@1x.png" type="multiSelector" placeholder="电话号码" selectData="{{selectData3}}" name="单选" id="mSelect" rule="must" value="{{selectValue3}}"  ></b-multi-select>
 
 </view>
 

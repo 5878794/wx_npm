@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "b-input": "../../components/b-input/b-input",
-    "b-select": "../../components/b-select/b-select"
+    "b-select": "../../components/b-select/b-select",
+    "b-multi-select": "../../components/b-multi-select/b-multi-select"
   }
 }
