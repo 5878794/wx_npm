@@ -2,6 +2,7 @@
   "usingComponents": {
     "b-input": "../../components/b-input/b-input",
     "b-select": "../../components/b-select/b-select",
-    "b-multi-select": "../../components/b-multi-select/b-multi-select"
+    "b-multi-select": "../../components/b-multi-select/b-multi-select",
+    "b-date":"../../components/b-date/b-date"
   }
 }
