@@ -9,10 +9,10 @@ import $ from '../../lib/jq.js';
 Page({
 	data: {
 		imgs:[
-			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692986&di=b8c5d923298c33ae2ba36f41dff04510&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg',href:'../index1/index'},
-			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692986&di=f0e2cd16a2b2a4a6409797e70208fd96&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F56%2F12%2F01300000164151121576126282411.jpg',href:''},
-			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692986&di=b02ecb4b94b2719a164bc7c67dccf407&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F64%2F76%2F20300001349415131407760417677.jpg',href:''},
-			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692985&di=ef8edfb1cf2dd4e39c8086d9254f1281&imgtype=0&src=http%3A%2F%2Fp2.so.qhimgs1.com%2Ft01dfcbc38578dac4c2.jpg',href:''}
+			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692986&di=b8c5d923298c33ae2ba36f41dff04510&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg',href:'#1'},
+			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692986&di=f0e2cd16a2b2a4a6409797e70208fd96&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F56%2F12%2F01300000164151121576126282411.jpg',href:'#2'},
+			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692986&di=b02ecb4b94b2719a164bc7c67dccf407&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F64%2F76%2F20300001349415131407760417677.jpg',href:'#3'},
+			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692985&di=ef8edfb1cf2dd4e39c8086d9254f1281&imgtype=0&src=http%3A%2F%2Fp2.so.qhimgs1.com%2Ft01dfcbc38578dac4c2.jpg',href:'#4'}
 		],
 		selectData:[
 			{key:11,value:'a'},
@@ -87,9 +87,9 @@ Page({
 	},
 
 	onLoad: function() {
-		console.log(this.selectComponent('#name'))
-		console.log($('#mSelect').val())
-		console.log($('#m1Select').val())
+		// console.log(this.selectComponent('#name'))
+		// console.log($('#mSelect').val())
+		// console.log($('#m1Select').val())
 
 		// $('#name').data({tt:123});
 		// console.log($('#name').data('tt'));
