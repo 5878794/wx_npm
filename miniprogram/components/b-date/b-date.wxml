@@ -6,7 +6,7 @@
         <block wx:if="{{name}}">
             <view class="name">{{name}}</view>
         </block>
-        <view class="input_body box_hlc boxflex1">
+        <view class="input_body box_hlc boxflex1 {{disabledClass}}">
 
 
 

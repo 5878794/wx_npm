@@ -53,6 +53,18 @@
 }
 
 
+.disabledClass{
+    border-color:#eee;
+    color:#ccc !important;
+}
+.disabledClass input,
+.disabledClass textarea,
+.disabledClass picker view{
+    color:#eee !important;
+}
+.disabledClass picker view:after{
+    display: none;
+}
 
 
 

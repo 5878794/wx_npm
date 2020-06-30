@@ -37,10 +37,29 @@ let b_input = Behavior({
 		}
 	},
 
-
+	observers: {
+		'disabled': function (params) {//  'params'是要监听的字段，（params）是已更新变化后的数据
+			if(params){
+				this.setData({
+					disabledClass:'disabledClass',
+					placeholder:''
+				})
+			}else{
+				this.setData({
+					disabledClass:'',
+					placeholder:this.data.placeholder1
+				})
+			}
+		}
+	},
 
 	// 生命周期函数，可以为函数，或一个在methods段中定义的方法名
 	attached: function () {
+		this.setData({
+			placeholder1:this.data.placeholder
+		});
+
+
 		//处理普通的组件
 		// this.setData({
 		// 	name:this.data.name,
