@@ -19,6 +19,7 @@
     <b-date class="b_input" icon="../../images/5@1x.png" type="time" start="08:00" end="21:00" placeholder="电话号码" name="密码" id="time" value="09:03" ></b-date>
     <b-date class="b_input" icon="../../images/5@1x.png" type="date" start="2020-11-11" end="2022-11-11" placeholder="电话号码" name="密码" id="date" value="2020-12-12" ></b-date>
     <b-area class="b_input" customItem="全部" icon="../../images/5@1x.png"  placeholder="电话号码" name="密码" id="area" value='四川省,成都市,金牛区' ></b-area>
+    <b-radio color="red" class="b_input" icon="../../images/5@1x.png" id="radio" name="名字"></b-radio>
 </view>
 
 

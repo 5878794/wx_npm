@@ -5,6 +5,7 @@ const app = getApp();
 import sys from '../../lib/sys.js';
 import $ from '../../lib/jq.js';
 
+app.globalData.$ = $;
 
 Page({
 	data: {

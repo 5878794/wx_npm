@@ -5,6 +5,7 @@
     "b-multi-select": "../../components/b-multi-select/b-multi-select",
     "b-date":"../../components/b-date/b-date",
     "b-area": "../../components/b-area/b-area",
-    "b-banner": "../../components/b-banner/b-banner"
+    "b-banner": "../../components/b-banner/b-banner",
+    "b-radio":"../../components/b-radio/b-radio"
   }
 }

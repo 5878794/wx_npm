@@ -19,12 +19,12 @@
 <!--            select-->
             <block wx:if="{{type=='multiSelector'}}">
                 <block wx:if="{{cascade=='true'}}">
-                    <picker class="__input__ boxflex1" mode='multiSelector' header-text="请选择" range="{{selectValue}}"  rule="{{rule}}" value="{{nowValue}}" bindchange="onSuccess" bindcolumnchange="onSelect">
+                    <picker disabled="{{disabled}}" class="__input__ boxflex1" mode='multiSelector' header-text="请选择" range="{{selectValue}}"  rule="{{rule}}" value="{{nowValue}}" bindchange="onSuccess" bindcolumnchange="onSelect">
                         <view class="show_text diandian">{{showText}}</view>
                     </picker>
                 </block>
                 <block wx:else>
-                    <picker class="__input__ boxflex1" mode='multiSelector' header-text="请选择" range="{{selectValue}}"  rule="{{rule}}" value="{{nowValue}}" bindchange="onSuccess1" bindcolumnchange="onSelect1">
+                    <picker disabled="{{disabled}}" class="__input__ boxflex1" mode='multiSelector' header-text="请选择" range="{{selectValue}}"  rule="{{rule}}" value="{{nowValue}}" bindchange="onSuccess1" bindcolumnchange="onSelect1">
                         <view class="show_text diandian">{{showText}}</view>
                     </picker>
                 </block>
