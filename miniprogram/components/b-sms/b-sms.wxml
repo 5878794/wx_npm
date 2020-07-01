@@ -26,7 +26,7 @@
             <input disabled="{{disabled}}" class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
 
 
-            <image class="isBtn" src="{{yzmSrc}}" style="width:{{yzmWidth}}rpx;height:{{yzmHeight}}rpx;" bindtap="onclick"></image>
+            <view class="smsBtn isBtn" style="{{nowBtnStyle}}" bindtap="onclick">{{nowBtnText}}</view>
 
 
 

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "b-sms": "../../components/b-sms/b-sms",
     "b-yzm": "../../components/b-yzm/b-yzm",
     "b-input": "../../components/b-input/b-input",
     "b-select": "../../components/b-select/b-select",

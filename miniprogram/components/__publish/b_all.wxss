@@ -211,3 +211,11 @@
 .hidden{
     display: none !important;
 }
+
+
+.isBtn{
+    transition: all 0.2s ease-in;
+}
+.isBtn:active{
+    opacity:0.6;
+}

@@ -165,6 +165,14 @@ Page({
 			src:data.pic,
 			token:data.codeToken
 		}
+	},
+
+	async sendSmsFn(){
+
+		await sys.sleep(1000);
+
+		throw '失败';
+
 	}
 
 

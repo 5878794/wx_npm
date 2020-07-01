@@ -68,5 +68,13 @@
 
 
 
+.smsBtn{
+    display: inline-block;
+    padding:0 10rpx;
+    margin:0 10rpx;
+    border:1rpx solid #333;
+}
+
+
 
 
