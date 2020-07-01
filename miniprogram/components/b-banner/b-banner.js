@@ -70,7 +70,7 @@ Component({
     },
 
 	attached(){
-		console.log(this.data.indicatorDots)
+
 	},
 
 

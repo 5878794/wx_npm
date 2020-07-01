@@ -19,8 +19,9 @@ let ajax = {
             },
             success: function (rs) {
                 rs = rs.data || {};
-                if (rs.state != 1) {
+                if (rs.code != 200) {
                     error(rs.msg);
+                    return;
                 }
 
                 success(rs.data);
@@ -41,8 +42,8 @@ let ajax = {
             Promise.all(arr).then(rs => {
                 success(rs)
             }).catch(rs => {
-                // error(rs);
-                throw rs;
+                error(rs);
+                // throw rs;
             })
         })
     }
@@ -50,9 +51,7 @@ let ajax = {
 };
 
 let api = {
-    getClassInfo: 'report/getClassInfo',
-    login: 'report/checkVerify',
-    addStudent: 'report/addStudent'
+    getYzm: 'verify/messageCode'
 };
 
 api = new Proxy(api, {

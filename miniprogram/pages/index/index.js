@@ -1,7 +1,7 @@
 //index.js
 const app = getApp();
 // import server from '../../lib/server.js';
-// import {ajax,api} from '../../lib/ajax.js';
+import {ajax,api} from '../../lib/ajax.js';
 import sys from '../../lib/sys.js';
 import $ from '../../lib/jq.js';
 
@@ -151,6 +151,20 @@ Page({
 
 	aaa(e){
 		console.log(e)
+	},
+
+
+
+	async getYZM(){
+		let [data] = await ajax.send([
+			api.getYzm({},'get')
+		]);
+
+
+		return {
+			src:data.pic,
+			token:data.codeToken
+		}
 	}
 
 
