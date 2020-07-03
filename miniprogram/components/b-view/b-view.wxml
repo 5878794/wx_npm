@@ -1,0 +1,10 @@
+
+
+
+
+
+
+
+<view class="{{class}}" tt="{{btt}}" style="{{style}}">
+    <slot></slot>
+</view>

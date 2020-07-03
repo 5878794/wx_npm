@@ -8,6 +8,7 @@
     "b-date":"../../components/b-date/b-date",
     "b-area": "../../components/b-area/b-area",
     "b-banner": "../../components/b-banner/b-banner",
-    "b-radio":"../../components/b-radio/b-radio"
+    "b-radio":"../../components/b-radio/b-radio",
+    "b-view": "../../components/b-view/b-view"
   }
 }

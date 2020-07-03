@@ -7,8 +7,17 @@ import $ from '../../lib/jq.js';
 
 app.globalData.$ = $;
 
-Page({
+var a = {
 	data: {
+		bgTextStyle: 'dark',
+		scrollTop: undefined,
+		bgColor: '#ff0000',
+		bgColorTop: '#00ff00',
+		bgColorBottom: '#0000ff',
+		nbTitle: '原标题',
+		nbLoading: true,
+		nbFrontColor: '#ffffff',
+		nbBackgroundColor: '#000000',
 		imgs:[
 			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692986&di=b8c5d923298c33ae2ba36f41dff04510&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg',href:'../index1/index'},
 			{img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593492692986&di=f0e2cd16a2b2a4a6409797e70208fd96&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F56%2F12%2F01300000164151121576126282411.jpg',href:''},
@@ -24,33 +33,33 @@ Page({
 		],
 		selectData1:[
 			{key:0,value:'无脊柱动物',children:[
-				{key:2,value:'无脊1',children:[
-					{key:8,value:'无脊1_1'},
-					{key:9,value:'无脊1_2'}
+					{key:2,value:'无脊1',children:[
+							{key:8,value:'无脊1_1'},
+							{key:9,value:'无脊1_2'}
+						]},
+					{key:3,value:'无脊2',children:[
+							{key:10,value:'无脊2_1'},
+							{key:11,value:'无脊2_2'}
+						]},
+					{key:4,value:'无脊3',children:[
+							{key:12,value:'无脊3_1'},
+							{key:13,value:'无脊3_2'}
+						]},
+					{key:5,value:'无脊4',children:[
+							{key:14,value:'无脊4_1'},
+							{key:15,value:'无脊4_2'}
+						]}
 				]},
-				{key:3,value:'无脊2',children:[
-					{key:10,value:'无脊2_1'},
-					{key:11,value:'无脊2_2'}
-				]},
-				{key:4,value:'无脊3',children:[
-					{key:12,value:'无脊3_1'},
-					{key:13,value:'无脊3_2'}
-				]},
-				{key:5,value:'无脊4',children:[
-					{key:14,value:'无脊4_1'},
-					{key:15,value:'无脊4_2'}
-				]}
-			]},
 			{key:1,value:'脊柱动物',children:[
-				{key:6,value:'脊1',children:[
-					{key:16,value:'脊1_1'},
-					{key:17,value:'脊1_2'}
-				]},
-				{key:7,value:'脊2',children:[
-					{key:18,value:'脊2_1'},
-					{key:19,value:'脊2_2'}
+					{key:6,value:'脊1',children:[
+							{key:16,value:'脊1_1'},
+							{key:17,value:'脊1_2'}
+						]},
+					{key:7,value:'脊2',children:[
+							{key:18,value:'脊2_1'},
+							{key:19,value:'脊2_2'}
+						]}
 				]}
-			]}
 		],
 		selectValue1:"1,1,1",
 		selectData2:[
@@ -91,6 +100,10 @@ Page({
 		console.log(this.selectComponent('#name'))
 		console.log($('#mSelect').val())
 		console.log($('#m1Select').val())
+
+		// setTimeout(function(){
+		// 	sys.openUrl('../index1/index')
+		// },5000)
 
 		// $('#name').data({tt:123});
 		// console.log($('#name').data('tt'));
@@ -176,4 +189,6 @@ Page({
 	}
 
 
-})
+};
+console.log(a)
+Page(a)

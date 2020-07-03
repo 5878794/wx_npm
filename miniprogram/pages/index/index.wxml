@@ -1,9 +1,34 @@
 
 
-
+<page-meta
+        background-text-style="{{bgTextStyle}}"
+        background-color="{{bgColor}}"
+        background-color-top="{{bgColorTop}}"
+        background-color-bottom="{{bgColorBottom}}"
+        scroll-top="{{scrollTop}}"
+        scroll-duration="1000"
+        page-style="color: green"
+        bindscroll="pageScroll"
+        bindresize="pageResize"
+        bindscrolldone="pageScrollDone"
+>
+    <navigation-bar
+            title="{{nbTitle}}"
+            loading="{{nbLoading}}"
+            front-color="{{nbFrontColor}}"
+            background-color="{{nbBackgroundColor}}"
+            color-animation-duration="2000"
+            color-animation-timing-func="easeIn"
+    />
+</page-meta>
 
 <b-banner id="banner"  indicatorDots="{{false}}" indicatorColor="red" indicatorActiveColor="blue" previousMargin="20rpx" imgs="{{imgs}}" style="width:100%;height: 400rpx; display: block;"></b-banner>
 
+
+<b-view class="box_hcc" btt="test_2" id="test123">
+    <b-view class="boxflex1" id="test222">2222222</b-view>
+    <b-view style="width:100rpx;" id="test333">3333333</b-view>
+</b-view>
 
 <view style="padding:0 20rpx;">
     <b-sms class="b_input" icon="../../images/5@1x.png" placeholder="请输入短信验证码"  name="短信" id="sms" value="" rule="must"  err="请输入用户名" time="10"  sendSmsFn="sendSmsFn"></b-sms>
@@ -26,4 +51,4 @@
 
 
 
-<view id="a1" bindtap="getVal">121312313</view>
+<view class="ta1" id="a1" bindtap="getVal" tt="dd">121312313</view>

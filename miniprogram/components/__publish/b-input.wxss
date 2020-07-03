@@ -1,4 +1,4 @@
-@import "./b_all.wxss";
+/*@import "./b_all.wxss";*/
 
 
 .body{
@@ -76,6 +76,13 @@
     text-align: center;
 }
 
+
+.isBtn{
+    transition: all 0.2s ease-in;
+}
+.isBtn:active{
+    opacity:0.6;
+}
 
 
 

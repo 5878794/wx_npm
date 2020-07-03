@@ -5,7 +5,9 @@
 
 Component({
 	behaviors: [],
-
+	options: {
+		styleIsolation: 'apply-shared'      //外部样式会影响内部样式，组件样式不影响外部
+	},
     properties: {
 		//是否显示点
 	    indicatorDots:{
