@@ -9,7 +9,7 @@
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": true,
+		"nodeModules": false,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -21,11 +21,11 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": false
+		"bundle": true
 	},
 	"appid": "wx9ec70a82ebd8ef44",
 	"projectname": "wxTest",
-	"libVersion": "2.8.1",
+	"libVersion": "2.8.3",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",

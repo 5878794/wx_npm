@@ -1,33 +1,11 @@
 
 
-<page-meta
-        background-text-style="{{bgTextStyle}}"
-        background-color="{{bgColor}}"
-        background-color-top="{{bgColorTop}}"
-        background-color-bottom="{{bgColorBottom}}"
-        scroll-top="{{scrollTop}}"
-        scroll-duration="1000"
-        page-style="color: green"
-        bindscroll="pageScroll"
-        bindresize="pageResize"
-        bindscrolldone="pageScrollDone"
->
-    <navigation-bar
-            title="{{nbTitle}}"
-            loading="{{nbLoading}}"
-            front-color="{{nbFrontColor}}"
-            background-color="{{nbBackgroundColor}}"
-            color-animation-duration="2000"
-            color-animation-timing-func="easeIn"
-    />
-</page-meta>
-
 <b-banner id="banner"  indicatorDots="{{false}}" indicatorColor="red" indicatorActiveColor="blue" previousMargin="20rpx" imgs="{{imgs}}" style="width:100%;height: 400rpx; display: block;"></b-banner>
 
 
-<b-view class="box_hcc" btt="test_2" id="test123">
-    <b-view class="boxflex1" id="test222">2222222</b-view>
-    <b-view style="width:100rpx;" id="test333">3333333</b-view>
+<b-view class1="box_hcc" style1="color:red;width:100%;" btt="test_2" id="test123">
+    <b-view class1="boxflex1 box_hcc">1111</b-view>
+    <b-view style1="width:120rpx;">22222</b-view>
 </b-view>
 
 <view style="padding:0 20rpx;">
