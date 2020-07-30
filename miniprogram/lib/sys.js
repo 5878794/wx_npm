@@ -1,6 +1,6 @@
 
 import server from "./server";
-
+import setting from './setting';
 
 
 
@@ -215,7 +215,6 @@ let sys = {
 			let query = wx.createSelectorQuery();
 			query.select(id).boundingClientRect();
 			query.exec(function (res) {
-				console.log('re '+JSON.stringify(res))
 				if(res[0]){
 					let backData = res[0] || {
 						top:0,
@@ -308,7 +307,6 @@ let sys = {
 						wx.getUserInfo({
 							success: function(res) {
 								let info = res.userInfo;
-								console.log(getApp().globalData)
 								if(app.globalData.openId && app.globalData.appId){
 									info.openId = app.globalData.openId;
 									info.appId = app.globalData.appId;
@@ -335,6 +333,42 @@ let sys = {
 				}
 			})
 		});
+	},
+	//文件上传
+	//serverUrl 服务器地址
+	//filePath  本地文件路径
+	//data      其它form表单
+	//name      file文件对应的key
+	//header    其它header内的对象
+	uploadFile(api,filePath,data,name,header){
+		name = name || 'file';
+		data = data || {};
+		header = header || {};
+		return new Promise((success,error)=>{
+			wx.uploadFile({
+				url: setting.serverUrl+api,
+				filePath: filePath,
+				name: name,
+				formData: data,
+				header:header,
+				timeout:20000,
+				success (res){
+					console.log(res)
+					let data = res.data
+					data = JSON.parse(data);
+
+					if(data.err){
+						error(data.info);
+						return;
+					}
+
+					success(data);
+				},
+				fail(e){
+					error(e);
+				}
+			})
+		})
 	}
 };
 

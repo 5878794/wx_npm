@@ -19,14 +19,14 @@ let ajax = {
             },
             success: function (rs) {
                 rs = rs.data || {};
-                if (rs.code != 200) {
-                    error(rs.msg);
-                    return;
+
+                if(rs.err || rs.err ==0){
+                    error(rs.info);
                 }
 
-                success(rs.data);
+                success(rs);
             },
-            error: function (rs) {
+            fail: function (rs) {
                 console.log(rs);
                 error("网络错误,无法连接服务器。");
             }
@@ -34,16 +34,12 @@ let ajax = {
     },
     //发送一堆请求
     async send(arr) {
-        //预约挂号特有
-        // this.token = await this.getToken();
-        // this.userToken = await app.getUserToken();
 
         return new Promise((success, error) => {
             Promise.all(arr).then(rs => {
                 success(rs)
             }).catch(rs => {
                 error(rs);
-                // throw rs;
             })
         })
     }
@@ -51,20 +47,59 @@ let ajax = {
 };
 
 let api = {
-    getYzm: 'verify/messageCode'
+    //获取类目
+    getProducts:{url:'/api_type_brand_model',type:'get'},
+    //获取用户金额
+    getUserMoney:{url:'/api_user/{openId}',type:'get'},
+    //回收单列表
+    getRecoverList:{url:'/api_order/{openId}/{page}',type:'get'},
+    //保修记录查询
+    getWarrantyList:{url:'/api_query/log/{openId}',type:'get'},
+    //查询imei
+    searchImei:{url:'/api_query/{openId}',type:'post'},
+    //获取评估时 产品的分类属性
+    getProductParam:{url:'/api_price/{productId}',type:'get'},
+    //物流公司列表
+    getMailCompany:{url:'/api_wuliu',type:'get'},
+    //提交订单
+    //单个：
+    //body:{order_type:订单类型,model_info:型号ID,subobj:选中标签集合,wl_cid:物流公司ID,wl_no:物流单号,tel:联系电话[,remake:备注]}
+    //多个：
+    //body:{order_type:订单类型,model_info:数量,subobj:图片地址或token集合,wl_cid:物流公司ID,wl_no:物流单号,tel:联系电话[,remake:备注]}
+    submitOrder:{url:'/api_order/{openId}',type:'post'}
 };
+
+
+
+
+
 
 api = new Proxy(api, {
     get(target, key, receiver) {
-        return function (data, type) {
+        return function (data) {
             return new Promise((success, error) => {
-                let url = target[key];
-                type = type || 'post';
+                let url = target[key].url,
+                    type = target[key].type || 'post';
+
+                //判断是否含有一堆大括号,大括号内为参数
+                let delArray = [];
+                url = url.replace(/{(.+?)}/g,function(key){
+                    key = key.substr(1,key.length-2);
+                    delArray.push(key);
+                    return data[key];
+                });
+
+                //删除data中的对象
+                delArray.map(rs=>{
+                    delete data[rs];
+                });
+
+
                 ajax.run(url, data, type, success, error);
             })
         }
     }
-})
+});
 
 
 
