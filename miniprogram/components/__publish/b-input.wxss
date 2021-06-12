@@ -10,7 +10,8 @@
 }
 
 .input_body{
-    border:1rpx solid #ccc; box-sizing: border-box;
+    /*border:1rpx solid #ccc; */
+    box-sizing: border-box;
 }
 .input_body image{
     display: block; width:50rpx; height: 50rpx;
@@ -56,6 +57,7 @@
 .disabledClass{
     border-color:#eee;
     color:#ccc !important;
+    padding:0 10rpx;
 }
 .disabledClass input,
 .disabledClass textarea,
@@ -82,6 +84,11 @@
 }
 .isBtn:active{
     opacity:0.6;
+}
+
+.placeholder_style{
+    color: #ccc !important;
+    font-size:28rpx;
 }
 
 

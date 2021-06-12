@@ -1,4 +1,8 @@
 
+import server from "./server";
+import setting from './setting';
+
+
 
 
 let sys = {
@@ -105,10 +109,23 @@ let sys = {
 	//打开新页面
 	//@param:url   str
 	openUrl(url) {
-		wx.redirectTo({ url: url });
+		wx.navigateTo({ url: url });
 	},
+	//关闭当前页面跳转到新页面，goback无法返回被关闭页面
 	closeAndOpenUrl(url){
 		wx.redirectTo({url:url});
+	},
+	//关闭所有打开的页面跳转到新页面
+	closeAllAndOpen(url){
+		wx.reLaunch({
+			url: url
+		})
+	},
+	//打开tab页面
+	openTabUrl(url){
+		wx.switchTab({
+			url: url
+		})
 	},
 
 	//返回前几页
@@ -198,7 +215,6 @@ let sys = {
 			let query = wx.createSelectorQuery();
 			query.select(id).boundingClientRect();
 			query.exec(function (res) {
-				console.log('re '+JSON.stringify(res))
 				if(res[0]){
 					let backData = res[0] || {
 						top:0,
@@ -242,6 +258,117 @@ let sys = {
 			setTimeout(function(){
 				success();
 			},ms)
+		})
+	},
+
+	//设置剪贴板内容
+	setClipboard(text){
+		return new Promise(success=>{
+			wx.setClipboardData({
+				data: text,
+				success () {
+					success();
+				}
+			})
+		})
+
+	},
+
+
+	//tab页面传参用
+	// text:    name=123&a=222
+	async setTabParam(text){
+		await this.setLocalData('__temp_tab_param__',text);
+	},
+	async getTabParam(){
+		let text = await this.getLocalData('__temp_tab_param__');
+		text = text.split('&');
+		let backData = {};
+		text.map(rs=>{
+			let item = rs.split('=');
+			backData[item[0]] = item[1];
+		});
+		return backData;
+	},
+	//保存用户信息及openid等
+	saveUserInfo(info){
+		let app = getApp();
+		app.globalData.openId = info.openId;
+		app.globalData.appId = info.appId;
+	},
+	//获取用户信息
+	getUserInfo(){
+		let app = getApp();
+		return new Promise(success=>{
+			wx.getSetting({
+				success (res){
+					if (res.authSetting['scope.userInfo']) {
+						// 已经授权，可以直接调用 getUserInfo 获取头像昵称
+						wx.getUserInfo({
+							success: function(res) {
+								let info = res.userInfo;
+								console.log(getApp().globalData)
+								if(app.globalData.openId && app.globalData.appId){
+									info.openId = app.globalData.openId;
+									info.appId = app.globalData.appId;
+									success(info);
+								}else{
+									server.login().then(rs=>{
+										let loginInfo = rs.event.userInfo;
+										info.openId = loginInfo.openId;
+										info.appId = loginInfo.appId;
+										//缓存
+										app.globalData.openId = info.openId;
+										app.globalData.appId = info.appId;
+										success(info);
+									}).catch(e=>{
+										sys.alert(e);
+									});
+								}
+
+							}
+						})
+					}else{
+						success(null);
+					}
+				}
+			})
+		});
+	},
+	//文件上传
+	//serverUrl 服务器地址
+	//filePath  本地文件路径
+	//data      其它form表单
+	//name      file文件对应的key
+	//header    其它header内的对象
+	uploadFile(api,filePath,data,name,header){
+		name = name || 'file';
+		data = data || {};
+		header = header || {};
+		return new Promise((success,error)=>{
+			wx.uploadFile({
+				url: setting.serverUrl+api,
+				filePath: filePath,
+				name: name,
+				formData: data,
+				header:header,
+				timeout:20000,
+				success (res){
+					console.log(res)
+					let data = res.data
+					data = JSON.parse(data);
+
+					if(data.err){
+						error(data.info);
+						return;
+					}
+
+					success(data);
+				},
+				fail(e){
+					error(e);
+				}
+			})
 		})
 	}
 };
