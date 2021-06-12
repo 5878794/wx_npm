@@ -1,0 +1,19 @@
+
+
+
+开通webserviceAPI服务：控制台 ->应用管理 -> 我的应用 ->添加key-> 勾选WebServiceAPI -> 保存
+
+(小程序SDK需要用到webserviceAPI的部分服务，所以使用该功能的KEY需要具备相应的权限)
+
+下载微信小程序JavaScriptSDK，微信小程序JavaScriptSDK v1.1   JavaScriptSDK v1.2
+
+安全域名设置，在小程序管理后台 -> 开发 -> 开发管理 -> 开发设置 -> “服务器域名” 中设置request合法域名，
+添加https://apis.map.qq.com
+
+
+
+<b-map
+    mapHeight="900"             //地图高度  rpx
+    mapScale="13"               //地图缩放登记  3-20
+    direction="{{tt}}"          //导航路径显示   tt={lat:30.70940627940803,lon:104.10876683360857}
+></b-map>

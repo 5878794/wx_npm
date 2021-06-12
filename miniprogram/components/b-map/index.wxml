@@ -1,0 +1,14 @@
+
+
+<!--index.js? [sm]:36 {lat: 39.92010634231027, lon: 116.46147868388641}-->
+
+
+<!--scale   3-20-->
+<map
+        show-location="true"
+        longitude="{{longitude}}"
+        latitude="{{latitude}}"
+        polyline="{{polyline}}"
+        scale="{{map_scale}}"
+        style="height:{{map_height}}"
+></map>
