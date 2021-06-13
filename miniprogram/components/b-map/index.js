@@ -24,7 +24,11 @@ Component({
 			type:Number,
 			value: 13
 		},
-		direction:{
+		directionTo:{
+			type:Object,
+			value:{}
+		},
+		directionFrom:{
 			type:Object,
 			value:{}
 		}
@@ -47,16 +51,12 @@ Component({
 				map_scale:param
 			})
 		},
-		direction(param){
-			param = param || {};
-			let lat = param.lat,
-				lon = param.lon;
+		directionTo(param){
+			this.directionChange(param,'to');
 
-			if(!lat || !lon){return;}
-
-			this.directionFn(lat,lon).catch(e=>{
-				console.log(e)
-			});
+		},
+		directionFrom(param){
+			this.directionChange(param,'from');
 		}
 	},
 	//准备好
@@ -65,10 +65,6 @@ Component({
 	},
 
 	map:null,
-	isReady:false,
-	addEventParam:{},
-	lat:'',
-	lon:'',
 
 	//载入
 	async attached(){
@@ -81,75 +77,64 @@ Component({
 
 	},
 	methods: {
-		async testLocationReady(){
-			return new Promise(success=>{
-				if(this.isReady){
-					success();
-					return;
-				}
+		directionChange(param,type){
+			param = param || {};
+			let lat = param.lat,
+				lng = param.lng;
 
-				//创建监听函数
-				this.addEventParam = new Proxy({},{
-					set(target, propKey, value, receiver){
-						success();
-						return Reflect.set(target, propKey, value, receiver);
-					}
+			if(!this.fromLocation){
+				this.fromLocation = {};
+			}
+			if(!this.toLocation){
+				this.toLocation = {};
+			}
+
+			if(type == 'from'){
+				this.fromLocation = {lat,lng};
+			}else{
+				this.toLocation = {lat,lng};
+			}
+
+			let fromLat = this.fromLocation.lat,
+				fromlng = this.fromLocation.lng,
+				toLat = this.toLocation.lat,
+				tolng = this.toLocation.lng;
+
+			if(fromLat && fromlng && toLat && tolng){
+				this.directionFn(fromLat,fromlng,toLat,tolng).catch(e=>{
+					console.log(e)
 				});
-			})
+			}
 		},
-
 
 		//显示当前的定位
 		async showMyLocationFn(){
+			await mapLib.isReady();
+
 			//获取定位
-			let {lat,lon} = await mapLib.getLocation();
+			let {lat,lng} = getApp().location;
 			//在地图中间显示定位点
 			await mapLib.moveMapToLocation({
 				map:this.map,
 				lat:lat,
-				lon:lon
+				lng:lng
 			});
 
-			this.lat = lat;
-			this.lon = lon;
 			this.setData({
-				longitude:lon,
+				longitude:lng,
 				latitude:lat
 			});
-
-			//触发ready事件
-			this.isReady = true;
-			if(this.addEventParam){
-				this.addEventParam.a = 'ready';
-			}
-
-
-
-
-			let _this = this;
-			wx.onLocationChange(function(rs){
-				_this.lat = rs.latitude;
-				_this.lon = rs.longitude;
-				_this.setData({
-					longitude:rs.longitude,
-					latitude:rs.latitude
-				});
-			})
-
 		},
 		//导航到 经纬度
-		async directionFn(lat,lon){
-			await this.testLocationReady();
-
-			//不能再定位  否则会报错 频繁定位问题
+		async directionFn(fromLat,fromlng,toLat,tolng){
+			await this.showMyLocationFn();
 			//通过腾旭地图sdk 获取导航路径
 			let {pl,distance,duration} = await mapLib.direction({
-				fromLat:this.lat,
-				fromLon:this.lon,
-				toLat:lat,
-				toLon:lon
+				fromLat:fromLat,
+				fromlng:fromlng,
+				toLat:toLat,
+				tolng:tolng
 			});
-
 			//显示导航到地图
 			this.setData({
 				polyline: [{

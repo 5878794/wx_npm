@@ -9,6 +9,44 @@ let TxKey = 'H3HBZ-PJACP-LXUDT-LEBRK-7NHW2-IPF3L',
 
 
 let lib = {
+	hasLocation:false,
+	tempLocationEvent:{},
+	async isReady(){
+		return new Promise(success=>{
+			if(this.hasLocation){
+				success();
+				return;
+			}
+
+			this.tempLocationEvent = new Proxy({},{
+				set(target, propKey, value, receiver){
+					success();
+					return Reflect.set(target, propKey, value, receiver);
+				}
+			});
+		});
+	},
+	//全局调用的   放在app.js中   之后从 getApp().location中获取
+	// this.location = {};
+	// mapLib.getLocationAlways().then(rs=>{
+	// 	console.log('定位启动。。。');
+	// }).catch(e=>{console.log(e)});
+	async getLocationAlways(){
+		let {lat,lng} = await this.getLocation(),
+			catchFn = function(lat,lng){
+				getApp().location = {lat,lng};
+			};
+		catchFn(lat,lng);
+
+		this.hasLocation = true;
+		this.tempLocationEvent.t = true;
+
+		wx.onLocationChange(function(rs){
+			let lat = rs.latitude,
+				lng = rs.longitude;
+			catchFn(lat,lng);
+		})
+	},
 	//获取地图中心点坐标  map 为地图对象
 	getCenterPointer(map){
 		return new Promise((success,error)=>{
@@ -16,7 +54,7 @@ let lib = {
 				success(e){
 					success({
 						lat:e.latitude,
-						lon:e.longitude
+						lng:e.longitude
 					});
 				},
 				fail(){
@@ -34,7 +72,7 @@ let lib = {
 				success(rs){
 					success({
 						lat:rs.latitude,
-						lon:rs.longitude
+						lng:rs.longitude
 					});
 				},
 				fail(){
@@ -45,11 +83,11 @@ let lib = {
 	},
 	//移动地图中心点到指定坐标
 	moveMapToLocation(opt){
-		let {map,lat,lon} = opt;
+		let {map,lat,lng} = opt;
 
 		return new Promise((success,error)=>{
 			map.moveToLocation({
-				longitude:lon,
+				longitude:lng,
 				latitude:lat,
 				success(){
 					success();
@@ -62,11 +100,11 @@ let lib = {
 	},
 	//导航到指定坐标 （使用外部app）
 	navigationToLocation(opt){
-		let {map,lat,lon,name} = opt;
+		let {map,lat,lng,name} = opt;
 
 		return new Promise((success,error)=>{
 			map.openMapApp({
-				longitude:lon,
+				longitude:lng,
 				latitude:lat,
 				destination:name,
 				success(rs){
@@ -79,20 +117,22 @@ let lib = {
 		})
 
 	},
-	//导航 用的sdk  返回路径点
+
+
+	//路径规划 用的sdk  返回路径点
 	direction(opt){
-		let {toLat,toLon,fromLat,fromLon} = opt;
+		let {toLat,tolng,fromLat,fromlng} = opt;
 
 		return new Promise((success,error)=>{
 			mapSDK.direction({
 				mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行）、'bicycling'（骑行），不填默认：'driving',可不填
 				from:{
 					latitude: fromLat,
-					longitude: fromLon
+					longitude: fromlng
 				},        //默认当前位置
 				to:{
 					latitude: toLat,
-					longitude: toLon
+					longitude: tolng
 				},
 				success(rs){
 					rs = rs.result || {};
@@ -126,6 +166,64 @@ let lib = {
 
 		})
 	},
+	//地址搜索 用的sdk
+	search(key,pageSize,pageIndex){
+		pageSize = pageSize || 20;
+		pageIndex = pageIndex || 1;
+		return new Promise((success,error)=>{
+			if(!key){
+				success([]);
+				return;
+			}
+
+			mapSDK.search({
+				keyword:key,
+				page_size:pageSize,
+				page_index:pageIndex,
+				success(res){
+					// res = res.data;
+					success(res);
+				},
+				fail(e){
+					console.log(e);
+					error(e);
+				}
+			})
+		})
+	},
+	//输入时联想搜索  用的sdk
+	//需要在  await this.isReady()
+	inputSearch(key,pageSize,pageIndex){
+		pageSize = pageSize || 20;
+		pageIndex = pageIndex || 1;
+		return new Promise((success,error)=>{
+			if(!key){
+				success([]);
+				return;
+			}
+
+			let location = getApp().location,
+				{lat,lng} = location;
+			location = (lat)? lat+','+lng : '';
+
+			mapSDK.getSuggestion({
+				keyword:key,
+				location:location,
+				page_size:pageSize,
+				page_index:pageIndex,
+				success(res){
+					// res = res.data;
+					success(res);
+				},
+				fail(e){
+					console.log(e);
+					error(e);
+				}
+			})
+		})
+	},
+
+
 	//显示所有点
 	showAllPoint(opt){
 		let {map,points,padding=[20,20,20,20]} = opt;
