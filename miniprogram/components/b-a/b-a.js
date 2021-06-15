@@ -15,11 +15,22 @@ Component({
 	    localData:{     //tab页面不能带参数  走本地缓存
 			type:String,
 		    value:''
+	    },
+	    boxType:{
+			type:String,
+		    value:''
 	    }
     },
     data: {
 
     },
+	observers:{
+		boxType(param){
+			this.setData({
+				className:param
+			});
+		}
+	},
 
 	attached(){
 

@@ -1,0 +1,9 @@
+
+
+<view class="box_hcc title" style="{{iosStyle}}">
+    <view class="title_left box_hlc" style="{{btnStyle}}">
+        <image style="{{imgStyle}}" bindtap="backFn" class="{{showBackType}} image" src="{{backIcon}}" mode="aspectFit"></image>
+    </view>
+    <view class="boxflex1" style="color:{{color}};{{otherStyle}}">{{titleName}}</view>
+    <view class="right"></view>
+</view>

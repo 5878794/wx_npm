@@ -1,6 +1,6 @@
 
 
 
-<view class="view_a" data-localData="{{localData}}" data-url="{{url}}" data-type="{{type}}" bindtap="onclick">
+<view class="{{className}}" style="width:100%;" hover-class="hover" data-localData="{{localData}}" data-url="{{url}}" data-type="{{type}}" bindtap="onclick">
     <slot></slot>
 </view>
