@@ -1,9 +1,13 @@
 
 
-<view class="box_hcc title" style="{{iosStyle}}">
-    <view class="title_left box_hlc" style="{{btnStyle}}">
-        <image style="{{imgStyle}}" bindtap="backFn" class="{{showBackType}} image" src="{{backIcon}}" mode="aspectFit"></image>
+<view class="box_hcc title">
+    <image class="bg_img" wx:if="{{imgSrc}}" src="{{imgSrc}}" mode="widthFix"></image>
+    <view class="box_hcc title_main">
+        <view class="title_left box_hlc" style="{{btnStyle}}">
+            <image style="{{imgStyle}}" bindtap="backFn" class="{{showBackType}} image" src="{{backIcon}}" mode="aspectFit"></image>
+        </view>
+        <view class="boxflex1" style="color:{{color}};{{otherStyle}}">{{titleName}}</view>
+        <view class="right"></view>
     </view>
-    <view class="boxflex1" style="color:{{color}};{{otherStyle}}">{{titleName}}</view>
-    <view class="right"></view>
 </view>
+<view class="_title"></view>

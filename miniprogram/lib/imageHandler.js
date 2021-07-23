@@ -27,6 +27,28 @@ let imgHandler = {
 			});
 		});
 
+	},
+	canvasToTempFilePath(opt) {
+		return new Promise((success,error)=>{
+			wx.canvasToTempFilePath({
+				// x: 100,
+				// y: 200,
+				// width: 50,
+				// height: 50,
+				// destWidth: 100,      //输出的图片的宽度
+				// destHeight: 100,     //输出的图片的高度
+				canvasId: 'myCanvas',
+				// canvas:'',		//画布标识，传入 canvas 组件实例 （canvas type="2d" 时使用该属性）。
+				success(res) {
+					console.log(res.tempFilePath)
+					success(res.tempFilePath);
+				},
+				fail(e){
+					error(e);
+					console.log(e);
+				}
+			})
+		})
 	}
 };
 

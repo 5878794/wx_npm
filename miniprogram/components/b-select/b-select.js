@@ -4,12 +4,16 @@ import b_input from '../__publish/b_input.js';
 Component({
 	behaviors: [b_input],
 	options: {
-		styleIsolation: 'apply-shared'      //外部样式会影响内部样式，组件样式不影响外部
+		// styleIsolation: 'apply-shared'      //外部样式会影响内部样式，组件样式不影响外部
 	},
     properties: {
 	    selectData:{
 		    type:Array,
 		    value:[]
+	    },
+	    arrow:{
+	    	type:Boolean,
+		    value:true
 	    }
     },
     data: {
@@ -34,14 +38,19 @@ Component({
 			let newData = [],
 				newKey = [],
 				selected = this.data.value,
-				selectIndex = 0;
+				selectIndex = '';
+
+
 			data.map((rs,i)=>{
 				if(rs.key == selected){
 					selectIndex = i;
 				}
-				newData.push(rs.value);
-				newKey.push(rs.key);
+				newData.push(rs.value.toString());
+				newKey.push(rs.key.toString());
 			});
+
+
+
 			this.setData({
 				selectValue:newData,
 				selectKey:newKey,
@@ -73,18 +82,28 @@ Component({
 
 
 		value(value){
-			let index = this.data.selectKey.indexOf(value);
+			if(!value){return;}
+			let index = this.data.selectKey.indexOf(value.toString());
 
 			if(index == -1){return;}
+
 
 
 			this.setData({
 				selectIndex:index
 			});
+
 			let val = this.getValue();
+
+
 			this.setData({
 				value:val
 			});
+
+			let myEventDetail = {value:val}; // detail对象，提供给事件监听函数
+			let myEventOption = {}; // 触发事件的选项
+			this.triggerEvent('mychange', myEventDetail, myEventOption);
+
 		}
 	}
 });

@@ -1,0 +1,49 @@
+
+
+列表加载  下拉刷新 上拉加载
+
+<b-scroll-load
+        bindLoadMoreFn="loadFn"             //加载下一页函数
+        bindRefreshFn="refreshFn"           //刷新函数
+        canPushLoadMore="true"              //是否启用上拉加载下一页
+        canPullRefresh="true"               //是否启用下拉刷新列表
+>
+    <view>list</view>
+</b-scroll-load>
+
+
+
+js部分
+page:{
+    loadFn(e){
+        //获取组件
+        let obj = e.detail.component;
+
+        return new Promise(success=>{
+            setTimeout(e=>{
+                success();
+
+                //加载下一页完成
+                obj.loadMoreEnd();
+                //加载下一页出错
+                obj.loadMoreError();
+                //所有页面加载完成
+                obj.noMoreData();
+            },3000)
+        })
+    },
+    refreshFn(){
+        //获取组件
+        let obj = e.detail.component;
+
+        return new Promise(success=>{
+            setTimeout(e=>{
+                success();
+
+                //刷新完成
+                obj.refreshEnd();
+
+            },3000)
+        })
+    }
+}

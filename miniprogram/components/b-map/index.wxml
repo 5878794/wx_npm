@@ -5,6 +5,7 @@
 
 <!--scale   3-20-->
 <map
+        class="map"
         show-location="true"
         longitude="{{longitude}}"
         latitude="{{latitude}}"

@@ -17,8 +17,8 @@ Component({
 
 	properties: {
 		mapHeight:{
-			type:Number,
-			value:300
+			type:String,
+			value:"100%"
 		},
 		mapScale:{
 			type:Number,
@@ -42,8 +42,15 @@ Component({
 	},
 	observers: {
 		mapHeight(param){
+			if(param.indexOf("%")>-1 || param.indexOf('rpx')>-1){
+
+			}else{
+				param = param+'rpx'
+			}
+
+
 			this.setData({
-				map_height:param+'rpx'
+				map_height:param
 			})
 		},
 		mapScale(param){

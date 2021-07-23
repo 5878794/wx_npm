@@ -1,10 +1,14 @@
 const globalData = getApp().globalData;
 import SETTING from './setting.js';
+import sys from './sys';
 
 let ajax = {
     //请求函数主体
     run(url, data, type, success, error) {
         url = SETTING.serverUrl + url;
+        let token = sys.getSessionData('catchData') || {};
+        token = token.token || '';
+
         wx.request({
             url: url,
             dataType: 'json',
@@ -14,10 +18,11 @@ let ajax = {
             responseType: 'text',
             header: {
                 // 'content-type': 'application/json' // 默认值
-                // 'token': globalData.token,
+                'token': token,
                 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
             },
             success: function (rs) {
+                //处理微信的返回
                 if(rs.statusCode != 200){
                     error('服务器异常，请稍后在试！');
                     return;
@@ -25,11 +30,12 @@ let ajax = {
 
                 rs = rs.data || {};
 
-                if(rs.err || rs.err ==0){
-                    error(rs.info);
+                //处理接口的返回
+                if(rs.code != 1){
+                    error(rs.msg);
                 }
 
-                success(rs);
+                success(rs.data);
             },
             fail: function (rs) {
                 console.log(rs);
@@ -52,28 +58,56 @@ let ajax = {
 };
 
 let api = {
-    //获取类目
-    getProducts:{url:'/api_type_brand_model',type:'get'},
-    //获取用户金额
-    getUserMoney:{url:'/api_user/{openId}',type:'get'},
-    //回收单列表
-    getRecoverList:{url:'/api_order/{openId}/{page}',type:'get'},
-    //保修记录查询
-    getWarrantyList:{url:'/api_query/log/{openId}',type:'get'},
-    //查询imei
-    searchImei:{url:'/api_query/{openId}',type:'post'},
-    //获取评估时 产品的分类属性
-    getProductParam:{url:'/api_price/{productId}',type:'get'},
-    //物流公司列表
-    getMailCompany:{url:'/api_wuliu',type:'get'},
-    //提交订单
-    //单个：
-    //body:{order_type:订单类型,model_info:型号ID,subobj:选中标签集合,wl_cid:物流公司ID,wl_no:物流单号,tel:联系电话[,remake:备注]}
-    //多个：
-    //body:{order_type:订单类型,model_info:数量,subobj:图片地址或token集合,wl_cid:物流公司ID,wl_no:物流单号,tel:联系电话[,remake:备注]}
-    submitOrder:{url:'/api_order/{openId}',type:'post'},
-    //用户注册
-    register:{url:'/api_user',type:'post'}
+    //检查是否绑定过
+    checkIsBind:{url:'weixin/check',type:'post'},
+    //绑定账号
+    bindUsername:{url:'weixin/wxLogin',type:'post'},
+    //获取首页数据
+    getIndexData:{url:'wx_index/disease_count',type:'get'},
+    //获取报单的字典
+    getReportDist:{url:'wx_disease/info',type:'get'},
+    //创建病害
+    createDisease:{url:'wx_disease/create',type:'post'},
+    //获取待办事项
+    getTodoList:{url:'wx_index/backlog',type:'get'},
+    //获取病害跟进(所有未关闭的)
+    getFollowList:{url:'wx_index/disease_list',type:'get'},
+    //获取12345待处理
+    getComplainList:{url:'wx_complaint/complain',type:'get'},
+    //获取病害详情
+    getInfo:{url:'wx_disease/getDiseaseInfo',type:'get'},
+    //获取12345详情
+    get12345Info:{url:'wx_complaint/complain_info',type:'get'},
+    //12345驳回
+    rejectFrom12345:{url:'wx_complaint/reject',type:'post'},
+    //历史病害
+    getHistoryList:{url:'wx_index/history_declare_list',type:'get'},
+
+    //催单
+    reminders:{url:'wx_disease/reminder',type:'post'},
+    //联系投诉人截图确认
+    contactTheComplainant:{url:'wx_disease/contact',type:'post'},
+    //施工完成 截图确认
+    constructionCompleted:{url:'wx_disease/complete',type:'post'},
+    //关闭病害
+    closeDisease:{url:'wx_disease/close',type:'post'},
+    //复核通过
+    reviewSuccess:{url:'wx_disease/review',type:'post'},
+    //复核不通过
+    reviewError:{url:'wx_disease/xuncha_rejected',type:'post'},
+    //审核不通过
+    auditError:{url:'wx_disease/rejected',type:'post'},
+    //审核通过
+    auditSuccess:{url:'wx_disease/audit',type:'post'},
+    //批量审核
+    bulkSubmission:{url:'wx_disease/batch_audit',type:'post'},
+    //核验通过
+    verificationSuccess:{url:'wx_disease/jianli_check',type:'post'},
+    //核验驳回
+    verificationError:{url:'wx_disease/jianli_not_check',type:'post'},
+
+    //获取指定id的列表数据
+    getListInfoById:{url:'wx_index/disease_id',type:'get'}
 
 };
 

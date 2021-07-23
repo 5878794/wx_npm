@@ -4,7 +4,7 @@ import b_input from '../__publish/b_input.js';
 Component({
 	behaviors: [b_input],
 	options: {
-		styleIsolation: 'apply-shared'      //外部样式会影响内部样式，组件样式不影响外部
+		// styleIsolation: 'apply-shared'      //外部样式会影响内部样式，组件样式不影响外部
 	},
     properties: {
 	    selectData:{
@@ -20,12 +20,18 @@ Component({
 
     },
 
-	attached(){
-		if(this.data.cascade == 'true'){
-			this.isCascade();
-		}else{
-			this.isNotCascade();
+	observers:{
+		selectData(param){
+			if(this.data.cascade == 'true'){
+				this.isCascade();
+			}else{
+				this.isNotCascade();
+			}
 		}
+	},
+
+	attached(){
+
 	},
 
 
@@ -82,7 +88,7 @@ Component({
 			let data = this.data.selectData,
 				n = 1;
 
-			while(data[0].children && data[0].children.length != 0){
+			while(data[0] && data[0].children && data[0].children.length != 0){
 				n++;
 				data = data[0].children;
 			}
@@ -94,6 +100,9 @@ Component({
 			let data = this.data.selectData,
 				back = [],
 				nowData = data;
+			if(data.length == 0){
+				return [];
+			}
 
 			for(let i=0,l=selectNumber;i<l;i++){
 				let val = selected[i],
@@ -127,6 +136,10 @@ Component({
 			let back = [],
 				data = this.data.selectData;
 
+			if(data.length == 0){
+				return [];
+			}
+
 			//取第一层
 			let lv1 = [];
 			data.map(rs=>{
@@ -158,7 +171,7 @@ Component({
 				data = data[rs].children || [];
 			});
 
-			return back.join(',');
+			return back.join(' ');
 		},
 
 
@@ -208,7 +221,8 @@ Component({
 				let n = val[i] || 0;
 				text.push(rs[n]);
 			});
-			text = text.join(',');
+			// text = text.join(',');
+			text = text.join(' ');
 
 			this.setData({
 				selectValue:data,

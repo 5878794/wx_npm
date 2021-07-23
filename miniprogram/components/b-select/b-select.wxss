@@ -1,2 +1,21 @@
 
 @import "../__publish/b-input.wxss";
+.__input__ .arrow{
+    width: 24rpx; height: 12rpx; margin: 0 25rpx;
+}
+.__input__{
+    display: flex;
+}
+
+
+
+/*本次项目需要修改部分*/
+
+.name{
+    font-size: 28rpx;
+    color: #828282;
+}
+.show_text{
+    font-size: 28rpx;
+    color: #222222;
+}

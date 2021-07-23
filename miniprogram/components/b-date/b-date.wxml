@@ -23,13 +23,25 @@
 <!--            time-->
             <block wx:if="{{type=='time'}}">
                 <picker class="__input__ boxflex1" disabled="{{disabled}}" mode='time' header-text="请选择"  start="{{start}}" end="{{end}}" value="{{value}}"  rule="{{rule}}" bindchange="onSelect">
-                    <view class="show_text diandian">{{value}}</view>
+<!--                    <view class="show_text diandian">{{value}}</view>-->
+                    <view class="box_hcc show_text">
+                        <view style="text-align: {{textAlign__}}" class="diandian boxflex1">{{(value)? value : placeholder}}</view>
+                        <block wx:if="{{arrow==true}}">
+                            <image class="arrow" src="../__publish/arrow.png"></image>
+                        </block>
+                    </view>
                 </picker>
             </block>
 <!--            date-->
             <block wx:if="{{type=='date'}}">
                 <picker class="__input__ boxflex1" disabled="{{disabled}}" mode='date' header-text="请选择" start="{{start}}" end="{{end}}" value="{{value}}"  rule="{{rule}}" bindchange="onSelect">
-                    <view class="show_text diandian">{{value}}</view>
+<!--                    <view class="show_text diandian">{{value}}</view>-->
+                    <view class="box_hcc show_text">
+                        <view style="text-align: {{textAlign__}}" class="diandian boxflex1">{{(value)? value : placeholder}}</view>
+                        <block wx:if="{{arrow==true}}">
+                            <image class="arrow" src="../__publish/arrow.png"></image>
+                        </block>
+                    </view>
                 </picker>
             </block>
 

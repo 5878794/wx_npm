@@ -1,10 +1,12 @@
 
 import input from '../__publish/b_input.js';
+import sys from '../../lib/sys';
+
 
 Component({
 	behaviors: [input],
 	options: {
-		styleIsolation: 'apply-shared'      //外部样式会影响内部样式，组件样式不影响外部
+		// styleIsolation: 'apply-shared'      //外部样式会影响内部样式，组件样式不影响外部
 	},
     properties: {
 	    nowBtnStyle:{
@@ -35,6 +37,12 @@ Component({
     data: {
 
     },
+	observers:{
+		values(prop){
+			this.data.values = prop;
+			this.setNowValue();
+		}
+	},
 
 	attached(){
 		this.setNowValue();
@@ -66,6 +74,8 @@ Component({
 					    src = file.path,
 					    size = file.size;
 
+			    	console.log(file)
+
 					let oldValue = _this.data.values || [];
 					if(n || n==0){
 						oldValue[n] = {src,size};
@@ -78,6 +88,20 @@ Component({
 				    _this.setNowValue();
 			    }
 		    });
+	    },
+	    showImage(e){
+		    let n = e.currentTarget.dataset.n,
+			    _this = this,
+			    imgObj = this.data.values[n] || {},
+			    imgSrc = imgObj.src,
+			    allImages = [];
+		    this.data.values.map(rs=>{
+		    	allImages.push(rs.src);
+		    });
+
+		    if(imgSrc){
+	            sys.openImage(allImages,imgSrc);
+		    }
 	    },
 	    del(e){
 	    	let n = e.currentTarget.dataset.n;
@@ -95,7 +119,7 @@ Component({
 		    this.setData({
 			    value:value
 		    });
-		    let newValue = value.split(',');
+		    let newValue = (value)? value.split(',') : [];
 		    let backVal = [];
 		    newValue.map(rs=>{
 		    	backVal.push({

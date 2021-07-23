@@ -1,2 +1,12 @@
 
 @import "../__publish/b-input.wxss";
+
+
+/*本次项目需要修改部分*/
+.__input_textarea__{
+    padding: 25rpx 33rpx;
+    font-size: 28rpx;
+    color: #8B8B8B;
+    line-height: 40rpx;
+    height: 120rpx;
+}

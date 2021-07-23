@@ -24,7 +24,7 @@
             <view class="box_hlt box_lines" style="{{(placeholder || icon)? 'padding:20rpx' :''}}">
 
                 <block wx:for="{{values}}" wx:key="src">
-                    <view class="imageItem box_hcc" data-n="{{index}}" bindtap="chooseImage">
+                    <view class="imageItem box_hcc" data-n="{{index}}" bindtap="showImage">
                         <image  src="{{item.src}}"></image>
                         <block wx:if="{{showDel}}">
                             <view class="del" data-n="{{index}}" catchtap="del">删除</view>

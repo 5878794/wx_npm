@@ -1,0 +1,41 @@
+<!--components/b-scroll-load/index.wxml-->
+
+
+<scroll-view
+        class="scroll-view"
+        scroll-y="true"
+        lower-threshold="200"
+        scroll-with-animation="true"
+        enable-back-to-top="true"
+        refresher-enabled="{{canPullRefresh}}"
+        refresher-triggered="{{refreshState}}"
+        enhanced="true"
+        refresher-default-style="white"
+        paging-enabled="true"
+        bindscrolltolower="bottomFn"
+        bindrefresherrefresh="topFn"
+>
+    <slot></slot>
+    <view class="bottom_info box_hcc {{hidden}}" wx-if="{{canPushLoadMore}}">
+        <block wx:if="{{!loadError}}">
+            <view class="loadEffect {{hiddenLoad}}">
+                <view></view>
+                <view></view>
+                <view></view>
+                <view></view>
+                <view></view>
+                <view></view>
+                <view></view>
+                <view></view>
+            </view>
+            <view>{{bottomText}}</view>
+        </block>
+        <block class="box_hcc" wx:else>
+            <view>加载失败,请</view>
+            <view class="err" bindtap="errReLoad">重试</view>
+        </block>
+    </view>
+</scroll-view>
+
+
+

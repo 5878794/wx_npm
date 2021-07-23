@@ -4,7 +4,7 @@
 
 .choose_btn{
     width:170rpx; height: 170rpx;
-    font-size:120rpx; background: #eee;
+    font-size:120rpx; background: #f6f7f7;
     border:1rpx solid #ccc; color: #ccc;
     line-height: 150rpx; text-align: center;
     margin:0 20rpx 20rpx 0;
@@ -32,3 +32,7 @@
     margin: 0;
     padding:0;
 }
+
+
+
+/*本次项目需要修改部分*/

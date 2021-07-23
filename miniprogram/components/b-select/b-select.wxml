@@ -3,7 +3,7 @@
 
 <view class="box_slt">
     <view class="box_hcc body">
-        <view class="name">{{name}}</view>
+
         <view class="input_body box_hlc boxflex1 {{disabledClass}}">
 
 
@@ -13,13 +13,20 @@
             <block wx:if="{{icon}}">
                 <image src="{{icon}}"></image>
             </block>
-
+            <block wx:if="{{name}}">
+                <view class="name">{{name}}</view>
+            </block>
 
 <!--            判断输入框类型-->
 <!--            select-->
             <block wx:if="{{type=='select'}}">
-                <picker disabled="{{disabled}}" class="__input__ boxflex1" mode='selector' header-text="请选择" range="{{selectValue}}"  rule="{{rule}}" bindchange="onSelect">
-                    <view class="show_text diandian">{{selectValue[selectIndex]}}</view>
+                <picker disabled="{{disabled}}" class="__input__ boxflex1 box_hcc" mode='selector' header-text="请选择" range="{{selectValue}}"  rule="{{rule}}" value="{{selectIndex}}" bindchange="onSelect">
+                    <view class="box_hcc show_text">
+                        <view style="text-align: {{textAlign__}}" class="diandian boxflex1">{{(selectValue[selectIndex])? selectValue[selectIndex] : placeholder}}</view>
+                        <block wx:if="{{arrow==true}}">
+                            <image class="arrow" src="../__publish/arrow.png"></image>
+                        </block>
+                    </view>
                 </picker>
             </block>
 

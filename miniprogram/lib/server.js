@@ -24,7 +24,6 @@ let serverFn = new Proxy({}, {
                         }
                     },
                     fail(err){
-                        console.log(err)
                         throw err.message;
                     }
                 })

@@ -34,6 +34,14 @@ let b_input = Behavior({
 		disabled:{
 			type:Boolean,
 			value:false
+		},
+		textAlign:{
+			type:String,
+			value:'right'
+		},
+		unit:{
+			type:String,
+			value:''
 		}
 	},
 
@@ -48,6 +56,18 @@ let b_input = Behavior({
 				this.setData({
 					disabledClass:'',
 					placeholder:this.data.placeholder1
+				})
+			}
+		},
+		textAlign(param){
+
+			if(param=='left'){
+				this.setData({
+					textAlign__:'left'
+				})
+			}else{
+				this.setData({
+					textAlign__:'right'
 				})
 			}
 		}
@@ -83,7 +103,7 @@ let b_input = Behavior({
 		onInput(e){
 			this.setData({
 				value:e.detail.value
-			})
+			});
 
 
 			let myEventDetail = {value:e.detail.value}; // detail对象，提供给事件监听函数

@@ -17,13 +17,16 @@ Component({
 		type:{
 			type:String,
 			value:'black'
+		},
+		imgSrc:{
+			type:String,
+			value:''
 		}
 	},
 
 	data: {
 		titleName:'',
 		showBackType:'',
-		iosStyle:'',
 		backIcon:'./back.png',
 		color:'#333',
 		otherStyle:'',
@@ -72,9 +75,8 @@ Component({
 		if(sys.indexOf('ios') == -1){
 			//android
 			this.setData({
-				otherStyle:'text-align:left;font-size:32rpx;font-weight:400;',
-				btnStyle:'width:80rpx;',
-				iosStyle:'height:130rpx;'
+				otherStyle:'text-align:left;font-size:32rpx;font-weight:400;position:relative;top:-12rpx;',
+				btnStyle:'width:60rpx;'
 			});
 
 			if(pageLength == 1){
@@ -84,6 +86,10 @@ Component({
 				})
 			}
 		}else{
+			this.setData({
+				otherStyle:'text-align:left;',
+				btnStyle:'width:60rpx;'
+			});
 			if(pageLength == 1){
 				this.setData({
 					imgStyle:'display:none;',

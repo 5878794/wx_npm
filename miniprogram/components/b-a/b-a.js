@@ -19,6 +19,10 @@ Component({
 	    boxType:{
 			type:String,
 		    value:''
+	    },
+	    target:{
+			type:String,
+		    value:''
 	    }
     },
     data: {
@@ -42,9 +46,19 @@ Component({
 	    	let target = e.currentTarget.dataset,
 			    url = target.url,
 			    type = target.type,
+			    _target = target.target,
 			    localData = target.localdata;
 
 	    	if(!url){return;}
+
+	    	//判断是否是电话
+		    if(url.indexOf('tel:')>-1){
+		    	let phone = url.split(':')[1];
+			    wx.makePhoneCall({
+				    phoneNumber: phone //仅为示例，并非真实的电话号码
+			    });
+		    	return;
+		    }
 
 
 	    	if(type=='tab'){
@@ -54,7 +68,11 @@ Component({
 			    wx.switchTab({url:url});
 
 		    }else{
-			    wx.navigateTo({url:url});
+	    		if(_target == 'self'){
+				    wx.redirectTo({url:url});
+			    }else{
+				    wx.navigateTo({url:url});
+			    }
 		    }
 	    }
     }

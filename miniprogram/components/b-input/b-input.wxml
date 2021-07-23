@@ -1,52 +1,48 @@
 
 
 
-<view class="box_slt">
-    <view class="box_hcc body">
-        <block wx:if="{{name}}">
-            <view class="name">{{name}}</view>
-        </block>
+<view class="box_hlc" style="height:100%;">
+    <view class="box_hlc body">
+
         <view class="input_body box_hlc boxflex1 {{disabledClass}}">
-
-
-
-
-
 
 <!--            判断是否有图标-->
             <block wx:if="{{icon}}">
                 <image src="{{icon}}"></image>
             </block>
 
+            <block wx:if="{{name}}">
+                <view class="name">{{name}}</view>
+            </block>
 
 <!--            判断输入框类型-->
 <!--            文本-->
             <block wx:if="{{type=='text'}}">
-                <input placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
+                <input style="text-align:{{textAlign__}}" placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            密码-->
             <block wx:elif="{{type=='password'}}">
-                <input placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" password="true" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
+                <input style="text-align:{{textAlign__}}"  placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="text" placeholder="{{placeholder}}" password="true" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            数字-->
             <block wx:elif="{{type=='number'}}">
-                <input placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
+                <input style="text-align:{{textAlign__}}"  placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            身份证-->
             <block wx:elif="{{type=='idcard'}}">
-                <input placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="idcard" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
+                <input style="text-align:{{textAlign__}}"  placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="idcard" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            带小数键盘-->
             <block wx:elif="{{type=='digit'}}">
-                <input placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="digit" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
+                <input style="text-align:{{textAlign__}}"  placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input__ boxflex1" type="digit" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 <!--            textarea-->
             <block wx:elif="{{type=='textarea'}}">
-                <textarea placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input_textarea__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
+                <textarea style="text-align:{{textAlign__}}"  placeholder-class="placeholder_style" disabled="{{disabled}}" class="__input_textarea__ boxflex1" type="number" placeholder="{{placeholder}}" value="{{value}}" rule="{{rule}}" bindinput="onInput"/>
             </block>
 
 
-
+            <view wx:if="{{unit}}" class="unit">{{unit}}</view>
 
 
         </view>

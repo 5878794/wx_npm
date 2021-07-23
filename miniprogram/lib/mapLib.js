@@ -226,7 +226,7 @@ let lib = {
 
 	//显示所有点
 	showAllPoint(opt){
-		let {map,points,padding=[20,20,20,20]} = opt;
+		let {map,points,padding=[100,100,100,100]} = opt;
 
 		return new Promise((success,error)=>{
 			map.includePoints({
@@ -264,7 +264,67 @@ let lib = {
 				}
 			})
 		});
-	}
+	},
+
+	//经纬度反解位置名
+	//注意：返回结果中的经纬度与传入的经纬度不同  已替换成传入的经纬度
+	locationToAddress(opt){
+		let {lat,lng} = opt;
+		return new Promise((success,error)=>{
+			mapSDK.reverseGeocoder({
+				location:{
+					latitude:lat,
+					longitude:lng
+				},
+				success(rs){
+					rs = rs.result || {};
+					let title = rs.formatted_addresses.recommend,
+						address = rs.address,
+						info = rs.ad_info;
+					info.title = title;
+					info.address = address;
+					info.location = opt;
+					success(info);
+				},
+				fail(e){
+					error(e);
+				}
+			})
+		});
+	},
+
+
+	//使用插件打开 地图选点
+	//https://lbs.qq.com/miniProgram/plugin/pluginGuide/locationPicker
+	//
+	//使用
+	//const chooseLocation = requirePlugin('chooseLocation');
+	// Page({
+	// 		     // 从地图选点插件返回后，在页面的onShow生命周期函数中能够调用插件接口，取得选点结果对象
+//      onShow () {
+	// 	const location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
+	// },
+	// onUnload () {
+	// 	// 页面卸载时设置插件选点数据为null，防止再次进入页面，geLocation返回的是上次选点结果
+	// 	chooseLocation.setLocation(null);
+	// }
+	// })
+	openChooseLocationPage(opt){
+		let {lat,lng} = opt;
+
+		const key = TxKey; //使用在腾讯位置服务申请的key
+		const referer = '代驾平台'; //调用插件的app的名称
+		const location = JSON.stringify({
+			latitude: lat,
+			longitude: lng
+		});
+		const category = '';
+
+		wx.navigateTo({
+			url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer + '&location=' + location + '&category=' + category
+		});
+	},
+
 
 
 };

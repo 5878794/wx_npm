@@ -1,0 +1,38 @@
+<!-- 新的：接口对其了H5 -->
+<!--取消触控事件  TODO  要恢复用下面注释的代码-->
+<canvas
+        wx:if="{{isUseNewCanvas}}"
+        type="2d"
+        class="ec-canvas"
+        canvas-id="{{ canvasId }}"
+        bindinit="init"
+></canvas>
+<!-- 旧的 -->
+<canvas
+        wx:else
+        class="ec-canvas"
+        canvas-id="{{ canvasId }}"
+        bindinit="init"
+></canvas>
+
+
+<!--<canvas-->
+<!--        wx:if="{{isUseNewCanvas}}"-->
+<!--        type="2d"-->
+<!--        class="ec-canvas"-->
+<!--        canvas-id="{{ canvasId }}"-->
+<!--        bindinit="init"-->
+<!--        bindtouchstart="{{ ec.disableTouch ? '' : 'touchStart' }}"-->
+<!--        bindtouchmove="{{ ec.disableTouch ? '' : 'touchMove' }}"-->
+<!--        bindtouchend="{{ ec.disableTouch ? '' : 'touchEnd' }}"-->
+<!--&gt;</canvas>-->
+<!--&lt;!&ndash; 旧的 &ndash;&gt;-->
+<!--<canvas-->
+<!--        wx:else-->
+<!--        class="ec-canvas"-->
+<!--        canvas-id="{{ canvasId }}"-->
+<!--        bindinit="init"-->
+<!--        bindtouchstart="{{ ec.disableTouch ? '' : 'touchStart' }}"-->
+<!--        bindtouchmove="{{ ec.disableTouch ? '' : 'touchMove' }}"-->
+<!--        bindtouchend="{{ ec.disableTouch ? '' : 'touchEnd' }}"-->
+<!--&gt;</canvas>-->
