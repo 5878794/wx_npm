@@ -34,5 +34,9 @@
 }
 
 
+.__canvas__{
+    position: fixed; top:9999rpx; left:9999rpx;
+}
+
 
 /*本次项目需要修改部分*/

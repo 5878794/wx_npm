@@ -1,6 +1,7 @@
 
 import input from '../__publish/b_input.js';
 import sys from '../../lib/sys';
+import imageAddWatermark from '../../lib/imageAddWatermark';
 
 
 Component({
@@ -32,6 +33,10 @@ Component({
 	    values:{
 	    	type:Array,
 		    value:[]
+	    },
+	    textWatermark:{       //默认启用水印  水印具体在imageAddWatermark中增加 默认添加日期
+	    	type:Array,
+		    value:[]            //[{x:'',y:'',text:'',size:''}]
 	    }
     },
     data: {
@@ -63,27 +68,42 @@ Component({
 	    chooseImage(e){
 	    	//判断点击的添加按钮还是图像本身
 	    	let n = e.currentTarget.dataset.n,
-			    _this = this;
+			    _this = this,
+			    ctx = wx.createCanvasContext('__canvas__',this),
+	    	    canvasId = '__canvas__';
+
+
+		    // query.select('#__canvas__').boundingClientRect(function(res){
+			//     console.log(res);
+		    // }).exec();
 
 		    wx.chooseImage({
 			    count:1,
 			    sizeType:this.data.sizeType.split(','),
 			    sourceType:this.data.sourceType.split(','),
-			    success:function(rs){
+			    success:async function(rs){
 			    	let file = rs.tempFiles[0],
 					    src = file.path,
 					    size = file.size;
 
-			    	console.log(file)
 
-					let oldValue = _this.data.values || [];
-					if(n || n==0){
-						oldValue[n] = {src,size};
-					}else{
-						oldValue.push({src,size});
-					}
+			    	let {width,height} = await _this.getImageInfo(src);
+			    	_this.setData({
+					    canvas:{width,height}
+				    });
+
+			    	if(_this.data.textWatermark.length != 0){
+					    src = await imageAddWatermark.init(canvasId,src,ctx,width,height,_this,_this.data.textWatermark);
+				    }
+
+				    let oldValue = _this.data.values || [];
+				    if(n || n==0){
+					    oldValue[n] = {src,size};
+				    }else{
+					    oldValue.push({src,size});
+				    }
 				    _this.setData({
-						values:oldValue
+					    values:oldValue
 				    });
 				    _this.setNowValue();
 			    }
@@ -129,6 +149,23 @@ Component({
 		    this.setData({
 			    values:backVal
 		    })
-	    }
+	    },
+
+	    getImageInfo(src){
+		    return new Promise((success,error)=>{
+			    wx.getImageInfo({
+				    src:src,
+				    success(rs){
+					    success({
+						    width:rs.width,
+						    height:rs.height
+					    });
+				    },
+				    fail(e){
+					    error(e);
+				    }
+			    })
+		    });
+	    },
     }
 });

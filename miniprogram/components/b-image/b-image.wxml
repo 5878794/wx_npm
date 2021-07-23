@@ -42,4 +42,7 @@
         </view>
     </view>
 <!--    <view class="err">{{err}}</view>-->
+
+
+    <canvas style="width:{{canvas.width}}px;height:{{canvas.height}}px;" class="__canvas__" canvas-id="__canvas__"></canvas>
 </view>
