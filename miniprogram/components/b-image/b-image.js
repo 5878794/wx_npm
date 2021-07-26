@@ -37,6 +37,10 @@ Component({
 	    textWatermark:{       //默认启用水印  水印具体在imageAddWatermark中增加 默认添加日期
 	    	type:Array,
 		    value:[]            //[{x:'',y:'',text:'',size:''}]
+	    },
+	    textWaterMarkErrorMsg:{
+	    	type:String,
+		    value:''
 	    }
     },
     data: {
@@ -72,6 +76,13 @@ Component({
 			    ctx = wx.createCanvasContext('__canvas__',this),
 	    	    canvasId = '__canvas__';
 
+	    	//必须传入水印参数
+	    	if(this.data.textWaterMarkErrorMsg){
+	    		if(this.data.textWatermark.length == 0){
+	    			sys.info.show(this.data.textWaterMarkErrorMsg);
+	    			return;
+			    }
+		    }
 
 		    // query.select('#__canvas__').boundingClientRect(function(res){
 			//     console.log(res);

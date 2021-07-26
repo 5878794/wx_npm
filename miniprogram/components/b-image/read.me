@@ -2,6 +2,7 @@
 //可以用lib的jq库
 //需要 __publish 文件夹
 
+//TODO 强制加水印无参数提示报错
 //上传照片
 
     <b-image
@@ -17,6 +18,7 @@
         max="10"                       //最大上传数量
         nowBtnStyle="color:red;"       //上传按钮样式
         textWatermark='data'            //文字水印  data=[{x:'',y:'',text:'',size:'',color1:'',color2:''}]
+        textWaterMarkErrorMsg=''        //未传入水印参数报错信息  默认不传，不检查是否有水印信息
     >
     </b-image>
 
