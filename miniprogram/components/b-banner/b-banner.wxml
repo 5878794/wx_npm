@@ -16,7 +16,7 @@
     <block wx:for="{{imgs}}" wx:key="img">
         <swiper-item class="swiper_item">
             <view class="banner_list" data-data="{{item}}" bindtap="onclick">
-                <image class="banner_img" src="{{item.img}}"></image>
+                <image class="banner_img" mode="aspectFit" src="{{item.img}}"></image>
             </view>
         </swiper-item>
     </block>
