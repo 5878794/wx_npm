@@ -1,0 +1,10 @@
+
+
+
+<view class="box_scc main" bindtap="chooseImage">
+    <image class="image" wx:if="{{value!=''}}" src="{{value}}" mode="aspectFit"></image>
+    <view wx:if="{{value==''}}" class="choose_btn box_scc">
+        <view>+</view>
+        <view class="placeholder_style">{{placeholder}}</view>
+    </view>
+</view>
