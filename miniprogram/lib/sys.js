@@ -456,6 +456,11 @@ let sys = {
                     header: header,
                     timeout: 20000,
                     success(res) {
+                        if(res.statusCode != 200){
+                            error('服务器异常,请稍后再试！');
+                            return;
+                        }
+
                         let data = res.data;
                         data = JSON.parse(data);
 
