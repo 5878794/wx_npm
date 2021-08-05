@@ -19,6 +19,10 @@ Component({
 	    rule:{
 	    	type:String,
 		    value:''
+	    },
+	    err:{
+	    	type:String,
+		    value:''
 	    }
     },
     data: {
