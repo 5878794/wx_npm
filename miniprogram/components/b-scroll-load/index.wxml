@@ -9,7 +9,6 @@
         enable-back-to-top="true"
         refresher-enabled="{{canPullRefresh}}"
         refresher-triggered="{{refreshState}}"
-        enhanced="true"
         refresher-default-style="white"
         paging-enabled="true"
         bindscrolltolower="bottomFn"
