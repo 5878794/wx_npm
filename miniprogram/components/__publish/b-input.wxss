@@ -104,5 +104,6 @@
     padding-right: 10rpx;
     color: #999;
     width: 40rpx;
+    text-align: center;
 }
 

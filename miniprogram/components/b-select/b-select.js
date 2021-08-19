@@ -29,6 +29,7 @@ Component({
 	attached(){
 		this.init(this.data.selectData);
 
+
 	},
 
 

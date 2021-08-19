@@ -1,7 +1,7 @@
 
 
 
-<view class="box_slt">
+<view class="box_slc" style="height:100%;">
     <view class="box_hcc body">
 
         <view class="input_body box_hlc boxflex1 {{disabledClass}}">
@@ -22,7 +22,8 @@
             <block wx:if="{{type=='select'}}">
                 <picker disabled="{{disabled}}" class="__input__ boxflex1 box_hcc" mode='selector' header-text="请选择" range="{{selectValue}}"  rule="{{rule}}" value="{{selectIndex}}" bindchange="onSelect">
                     <view class="box_hcc show_text">
-                        <view style="text-align: {{textAlign__}}" class="diandian boxflex1">{{(selectValue[selectIndex])? selectValue[selectIndex] : placeholder}}</view>
+                        <view style="text-align: {{textAlign__}}" class="diandian boxflex1" wx:if="{{selectValue[selectIndex]}}">{{selectValue[selectIndex]}}</view>
+                        <view style="text-align: {{textAlign__}}" class="diandian boxflex1 placeholder_style" wx:else>{{placeholder}}</view>
                         <block wx:if="{{arrow==true}}">
                             <image class="arrow" src="../__publish/arrow.png"></image>
                         </block>
