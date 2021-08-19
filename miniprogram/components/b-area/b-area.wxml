@@ -1,7 +1,7 @@
 
 
 
-<view class="box_slt">
+<view class="box_slc" style="height:100%;">
     <view class="box_hcc body">
 
         <view class="input_body box_hlc boxflex1 {{disabledClass}}">

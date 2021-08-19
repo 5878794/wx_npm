@@ -13,7 +13,6 @@
 
 .name{
     font-size: 28rpx;
-    color: #828282;
 }
 .show_text{
     font-size: 28rpx;
