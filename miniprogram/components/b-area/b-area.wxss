@@ -11,10 +11,3 @@
 
 /*本次项目需要修改部分*/
 
-.name{
-    font-size: 28rpx;
-}
-.show_text{
-    font-size: 28rpx;
-    color: #222222;
-}
