@@ -3,12 +3,8 @@
 
 <view class="box_slt">
     <view class="box_hcc body">
-        <block wx:if="{{name}}">
-            <view class="name">{{name}}</view>
-        </block>
+
         <view class="input_body box_hlc boxflex1 {{disabledClass}}">
-
-
 
 
 
@@ -17,14 +13,22 @@
             <block wx:if="{{icon}}">
                 <image src="{{icon}}"></image>
             </block>
-
+            <block wx:if="{{name}}">
+                <view class="name">{{name}}</view>
+            </block>
 
 <!--            判断输入框类型-->
-<!--            省市区-->
-
-            <picker class="__input__ boxflex1" disabled="{{disabled}}" mode='region' header-text="请选择"   value="{{newValue}}" custom-item="{{customItem}}"  rule="{{rule}}" bindchange="onSelect">
-                <view class="show_text diandian">{{showText}}</view>
-            </picker>
+<!--            select-->
+            <block wx:if="{{type=='area'}}">
+                <picker disabled="{{disabled}}" class="__input__ boxflex1 box_hcc" mode='region' header-text="请选择"  rule="{{rule}}" value="{{value}}" bindchange="onSelect">
+                    <view class="box_hcc show_text">
+                        <view style="text-align: {{textAlign__}}" class="diandian boxflex1">{{value}}</view>
+                        <block wx:if="{{arrow==true}}">
+                            <image class="arrow" src="../__publish/arrow.png"></image>
+                        </block>
+                    </view>
+                </picker>
+            </block>
 
 
 

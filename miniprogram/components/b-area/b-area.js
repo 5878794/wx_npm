@@ -1,57 +1,80 @@
 
-import input from '../__publish/b_input.js';
+import b_input from '../__publish/b_input.js';
 
 Component({
-	behaviors: [input],
+	behaviors: [b_input],
 	options: {
-		styleIsolation: 'apply-shared'      //外部样式会影响内部样式，组件样式不影响外部
+		// styleIsolation: 'apply-shared'      //外部样式会影响内部样式，组件样式不影响外部
 	},
     properties: {
-	    customItem:{
-	    	type:String,
-		    value:''
+	    selectData:{
+		    type:Array,
+		    value:[]
+	    },
+	    arrow:{
+	    	type:Boolean,
+		    value:true
 	    }
     },
     data: {
 
     },
 
+	observers: {
+
+	},
+
 	attached(){
-		let val = this.data.value;
-		val = val.split(',') || [];
-		this.setData({
-			newValue:val,
-			showText:val.join(','),
-			value:val.join(',')
-		});
+		this.init();
+
 	},
 
 
-    methods: {
-	    onSelect(e){
-	    	let val = e.detail.value;
+	methods: {
+		init(){
+			//处理select
+			console.log(this.data.value);
+			let selected = this.data.value;
 
-	    	this.setData({
-			    newValue:val,
-			    code:e.detail.code,
-			    postcode:e.detail.postcode,
-			    showText:val.join(','),
-			    value:val.join(',')
-		    });
 
-		    let myEventDetail = e.detail; // detail对象，提供给事件监听函数
-		    let myEventOption = {}; // 触发事件的选项
-		    this.triggerEvent('mychange', myEventDetail, myEventOption)
+			this.setData({
+				value:selected
+			});
+		},
 
-	    },
+		onSelect(e){
 
-	    value(value){
-	    	value = value.split(',') || [];
-		    this.setData({
-			    newValue:value,
-			    showText:(value.length==0)? '' : value.join(','),
-			    value:(value.length==0)? '' : value.join(',')
-		    });
-	    }
-    }
+			let value = e.detail.value;
+			value = value.join(',');
+
+			console.log(value)
+			this.setData({
+				value:value
+			});
+
+
+			let myEventDetail = {value:value}; // detail对象，提供给事件监听函数
+			let myEventOption = {}; // 触发事件的选项
+			this.triggerEvent('mychange', myEventDetail, myEventOption)
+
+		},
+
+		getValue(){
+			return this.data.value;
+		},
+
+		value(value){
+			if(!value){return;}
+
+
+			this.setData({
+				value:value
+			});
+
+			let myEventDetail = {value:value}; // detail对象，提供给事件监听函数
+			let myEventOption = {}; // 触发事件的选项
+			this.triggerEvent('mychange', myEventDetail, myEventOption);
+
+		}
+	}
 });
