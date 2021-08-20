@@ -14,17 +14,15 @@ Component({
 			value:[]
 		}
 	},
+	observers:{
+		items(newData){
+			if(newData.length != 0){
+				this.init();
+			}
+		}
+	},
 
 	async attached(){
-		this.canvasId = '__createImage_canvas__';
-		this.ctx = wx.createCanvasContext(this.canvasId, this);
-
-		let style = await this.getCanvasStyle();
-		this.width = style.width;
-		this.height = style.height;
-		this.winWidth = wx.getSystemInfoSync().windowWidth;
-
-		this.init();
 	},
 
 	/**
@@ -36,6 +34,14 @@ Component({
 
 	methods: {
 		async init(){
+			this.canvasId = '__createImage_canvas__';
+			this.ctx = wx.createCanvasContext(this.canvasId, this);
+
+			let style = await this.getCanvasStyle();
+			this.width = style.width;
+			this.height = style.height;
+			this.winWidth = wx.getSystemInfoSync().windowWidth;
+
 			this.setData({
 				canvasItems:this.data.items
 			});
