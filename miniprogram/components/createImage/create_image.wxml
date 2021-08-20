@@ -1,0 +1,14 @@
+
+
+<view class="main">
+    <canvas
+            class="canvas"
+            id="__createImage_canvas__"
+            canvas-id = '__createImage_canvas__'
+    ></canvas>
+    <canvas
+            class="__canvas"
+            id="__canvas_qrcode__"
+            canvas-id="__canvas_qrcode__"
+    ></canvas>
+</view>
