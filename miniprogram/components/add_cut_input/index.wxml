@@ -1,0 +1,11 @@
+<!--components/add_cut_input/index.wxml-->
+
+
+
+<view class="body box_h_side_c">
+    <view class="main box_hlc">
+        <view class="add box_hcc" bindtap="addFn">+</view>
+        <view class="cut box_hcc" bindtap="cutFn">-</view>
+    </view>
+    <input class="input_" type="number" value="{{value}}" bindinput="inputFn"></input>
+</view>

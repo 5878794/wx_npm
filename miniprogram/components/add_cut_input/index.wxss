@@ -1,0 +1,27 @@
+/* components/add_cut_input/index.wxss */
+
+@import "../../css/box.wxss";
+
+
+.body{
+    width: 100%; height: 100%;
+}
+.main{
+    width: 124rpx; height: 52rpx;
+    border:1rpx solid #D8D8D9;
+    border-radius: 10rpx;
+}
+.add,.cut{
+    width: 50%; height: 100%;
+}
+.add{
+    background: #D5D5D7;
+}
+.input_{
+    width: 124rpx; height: 52rpx;
+    border:1rpx solid #D8D8D9;
+    border-radius: 10rpx;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+}
+

@@ -1,0 +1,8 @@
+<!--components/chooseOne/index.wxml-->
+
+
+
+<view class="body box_hcc">
+    <view class="left box_hcc {{select[0]}}" bindtap="chooseFn" data-n="0">{{selectData[0].val}}</view>
+    <view class="right box_hcc {{select[1]}}" bindtap='chooseFn' data-n="1">{{selectData[1].val}}</view>
+</view>
