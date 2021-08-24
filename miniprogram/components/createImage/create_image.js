@@ -87,15 +87,22 @@ Component({
 					this.drawBg(thisItem);
 				}
 			}
-			this.ctx.draw(true);
 
 
-			let outPath = await imageLib.canvasToTempFile(this.canvasId,this);
+			let _this = this;
+			this.ctx.draw(true,async function(){
+				let outPath = await imageLib.canvasToTempFile(_this.canvasId,_this);
+				let myEventDetail = {value:outPath}; // detail对象，提供给事件监听函数
+				let myEventOption = {}; // 触发事件的选项
+				_this.triggerEvent('success', myEventDetail, myEventOption);
+			});
 
-			let myEventDetail = {value:outPath}; // detail对象，提供给事件监听函数
-			let myEventOption = {}; // 触发事件的选项
-			this.triggerEvent('success', myEventDetail, myEventOption);
 
+
+			//
+			// console.log(outPath)
+			// let temp = await imageLib.getImageInfo(outPath);
+			// console.log(temp)
 		},
 		rpx2px(val){
 			return val / 750 * this.winWidth;
