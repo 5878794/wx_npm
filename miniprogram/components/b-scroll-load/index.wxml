@@ -5,12 +5,9 @@
         class="scroll-view"
         scroll-y="true"
         lower-threshold="200"
-        scroll-with-animation="true"
-        enable-back-to-top="true"
         refresher-enabled="{{canPullRefresh}}"
         refresher-triggered="{{refreshState}}"
         refresher-default-style="white"
-        paging-enabled="true"
         bindscrolltolower="bottomFn"
         bindrefresherrefresh="topFn"
 >
