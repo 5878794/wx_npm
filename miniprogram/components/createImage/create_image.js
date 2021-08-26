@@ -35,9 +35,13 @@ Component({
 	methods: {
 		async init(){
 			this.canvasId = '__createImage_canvas__';
+
 			this.ctx = wx.createCanvasContext(this.canvasId, this);
 
+
 			let style = await this.getCanvasStyle();
+
+
 			this.width = style.width;
 			this.height = style.height;
 			this.winWidth = wx.getSystemInfoSync().windowWidth;
@@ -45,17 +49,24 @@ Component({
 			this.setData({
 				canvasItems:this.data.items
 			});
+
+
 			this.clearCanvas();
+
+
+
 			await this.draw();
+
+
 		},
 		getCanvasStyle(){
 			let query = wx.createSelectorQuery().in(this);
 			return new Promise(success=>{
-				setTimeout(e=>{
+				// setTimeout(e=>{
 					query.select('#'+this.canvasId).boundingClientRect(rs => {
 						success(rs);
 					}).exec();
-				},2000)
+				// },2000)
 
 			});
 		},
@@ -66,11 +77,13 @@ Component({
 		async draw(){
 			for(let i=0,l=this.data.canvasItems.length;i<l;i++){
 				let thisItem = this.data.canvasItems[i];
+
 				if(thisItem.type=='img'){
 					let info = await imageLib.getImageInfo(thisItem.src);
 					if(info){
 						this.drawImage(thisItem,info);
 					}
+
 				}else if(thisItem.type=='text'){
 					this.drawText(thisItem);
 				}else if(thisItem.type=='qrcode'){
@@ -86,23 +99,17 @@ Component({
 				}else if(thisItem.type=='bg'){
 					this.drawBg(thisItem);
 				}
+
 			}
 
 
 			let _this = this;
-			this.ctx.draw(true,async function(){
+			await this.ctx.draw(true,async function(){
 				let outPath = await imageLib.canvasToTempFile(_this.canvasId,_this);
 				let myEventDetail = {value:outPath}; // detail对象，提供给事件监听函数
 				let myEventOption = {}; // 触发事件的选项
 				_this.triggerEvent('success', myEventDetail, myEventOption);
 			});
-
-
-
-			//
-			// console.log(outPath)
-			// let temp = await imageLib.getImageInfo(outPath);
-			// console.log(temp)
 		},
 		rpx2px(val){
 			return val / 750 * this.winWidth;
