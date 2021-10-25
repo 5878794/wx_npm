@@ -96,6 +96,16 @@ Component({
 				loadError:false
 			});
 			this.triggerEvent('LoadMoreFn', {component:this}, {});
+		},
+		//
+		loadMoreRestart(){
+			this.loadingMore = false;
+			this.loadEnd = false;
+			this.setData({
+				bottomText:'正在加载中',
+				hiddenLoad:'',
+				hidden:'hidden'
+			});
 		}
 	}
 });
